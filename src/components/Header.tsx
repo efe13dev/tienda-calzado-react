@@ -1,6 +1,6 @@
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useLanguage } from "../contexts/useLanguage";
 import { translations } from "../data/translations.ts";
@@ -13,6 +13,7 @@ interface HeaderProps {
 
 const Header = ({ cartCount }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const location = useLocation();
   const { language } = useLanguage();
   const t = translations[language];
 
@@ -25,19 +26,19 @@ const Header = ({ cartCount }: HeaderProps) => {
           </Link>
 
           <nav className="hidden space-x-8 md:flex">
-            <Link to="/" className="hover:text-primary-600 text-gray-700 transition-colors">
+            <Link to="/" className={`transition-colors ${location.pathname === '/' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
               {t.nav.home}
             </Link>
             <Link
               to="/productos"
-              className="hover:text-primary-600 text-gray-700 transition-colors"
+              className={`transition-colors ${location.pathname === '/productos' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
             >
               {t.nav.products}
             </Link>
-            <Link to="/ofertas" className="hover:text-primary-600 text-gray-700 transition-colors">
+            <Link to="/ofertas" className={`transition-colors ${location.pathname === '/ofertas' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
               {t.nav.offers}
             </Link>
-            <Link to="/contacto" className="hover:text-primary-600 text-gray-700 transition-colors">
+            <Link to="/contacto" className={`transition-colors ${location.pathname === '/contacto' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
               {t.nav.contact}
             </Link>
           </nav>
@@ -62,24 +63,24 @@ const Header = ({ cartCount }: HeaderProps) => {
         {isMenuOpen && (
           <nav className="border-t border-gray-200 py-4 md:hidden">
             <div className="flex flex-col space-y-2">
-              <Link to="/" className="hover:text-primary-600 py-2 text-gray-700 transition-colors">
+              <Link to="/" className={`py-2 transition-colors ${location.pathname === '/' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
                 {t.nav.home}
               </Link>
               <Link
                 to="/productos"
-                className="hover:text-primary-600 py-2 text-gray-700 transition-colors"
+                className={`py-2 transition-colors ${location.pathname === '/productos' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
               >
                 {t.nav.products}
               </Link>
               <Link
                 to="/ofertas"
-                className="hover:text-primary-600 py-2 text-gray-700 transition-colors"
+                className={`py-2 transition-colors ${location.pathname === '/ofertas' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
               >
                 {t.nav.offers}
               </Link>
               <Link
                 to="/contacto"
-                className="hover:text-primary-600 py-2 text-gray-700 transition-colors"
+                className={`py-2 transition-colors ${location.pathname === '/contacto' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
               >
                 {t.nav.contact}
               </Link>

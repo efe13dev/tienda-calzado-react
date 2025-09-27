@@ -1,16 +1,9 @@
-# React + Vite
+# TODO
+[] Hacer galeria de imagenes en la vista del producto
+[] Agregar el logo al lado del titulo de la tienda
+[] agregar funcionalidad de añadir producto al carrito 
+[] en la lista de productos permitir agregar al carrito sin necesidad de entrar al detalle del producto
+[] completar traducciones
+[] revisar estilos del titulo en vistas mobile
+[] añadir animacion al pulsar el titulo de la tienda
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

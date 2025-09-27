@@ -24,7 +24,13 @@ type Season = "todos" | "verano" | "invierno";
 const Products = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedGender, setSelectedGender] = useState<GenderSelection>(null);
-  const [selectedSeason, setSelectedSeason] = useState<Season>("todos");
+  
+  const getCurrentSeason = (): Season => {
+    const currentMonth = new Date().getMonth() + 1;
+    return (currentMonth >= 3 && currentMonth <= 9) ? "verano" : "invierno";
+  };
+  
+  const [selectedSeason, setSelectedSeason] = useState<Season>(getCurrentSeason());
   const { language } = useLanguage();
   const t = translations[language];
 
@@ -90,7 +96,7 @@ const Products = () => {
           </h2>
           <button
             onClick={() => setSelectedGender(null)}
-            className="flex items-center rounded-lg border-2 border-gray-300 bg-gray-100 px-6 py-3 text-lg font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-200"
+            className="flex items-center rounded-lg border-2 border-gray-300 bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-200"
           >
             ← Volver
           </button>
