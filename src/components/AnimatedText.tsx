@@ -1,7 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
-const AnimatedText = ({ text, className = '', delay = 0, onComplete }) => {
-  const [isVisible, setIsVisible] = useState(false);
+interface AnimatedTextProps {
+  text: string;
+  className?: string;
+  delay?: number;
+  onComplete?: () => void;
+}
+
+const AnimatedText = ({ text, className = "", delay = 0, onComplete }: AnimatedTextProps) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,15 +22,11 @@ const AnimatedText = ({ text, className = '', delay = 0, onComplete }) => {
   return (
     <span className={`relative inline-block ${className}`}>
       {/* Espacio reservado para evitar saltos */}
-      <span className="invisible">
-        {text}
-      </span>
+      <span className="invisible">{text}</span>
       {/* Texto animado */}
-      <span 
+      <span
         className={`absolute top-0 left-0 w-full transform transition-all duration-1000 ease-out ${
-          isVisible 
-            ? 'opacity-100 translate-y-0' 
-            : 'opacity-0 translate-y-8'
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
         {text}

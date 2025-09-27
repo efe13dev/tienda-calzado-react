@@ -1,40 +1,158 @@
-export const translations = {
+// Tipos para las traducciones
+export interface NavigationTranslations {
+  home: string;
+  products: string;
+  offers: string;
+  contact: string;
+}
+
+export interface HeroTranslations {
+  title: string;
+  subtitle: string;
+  description: string;
+  viewProducts: string;
+  specialOffers: string;
+  customers: string;
+  models: string;
+  support: string;
+}
+
+export interface FeatureTranslations {
+  title: string;
+  description: string;
+}
+
+export interface FeaturesTranslations {
+  title: string;
+  subtitle: string;
+  comfort: FeatureTranslations;
+  quality: FeatureTranslations;
+  shipping: FeatureTranslations;
+  madeInSpain: FeatureTranslations;
+}
+
+export interface ProductsTranslations {
+  title: string;
+  subtitle: string;
+  featured: string;
+  viewAll: string;
+  addToCart: string;
+  featuredBadge: string;
+  reviews: string;
+}
+
+export interface ProductDetailTranslations {
+  addToCart: string;
+  size: string;
+  color: string;
+  quantity: string;
+  characteristics: string;
+  notFound: string;
+  backToProducts: string;
+}
+
+export interface CartTranslations {
+  title: string;
+  empty: string;
+  emptyMessage: string;
+  viewProducts: string;
+  summary: string;
+  subtotal: string;
+  shipping: string;
+  tax: string;
+  total: string;
+  free: string;
+  checkout: string;
+  continueShopping: string;
+}
+
+export interface ContactTranslations {
+  title: string;
+  subtitle: string;
+  sendMessage: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  send: string;
+  contactInfo: string;
+  schedule: string;
+  phone: string;
+  address: string;
+  mondayFriday: string;
+  saturday: string;
+  sunday: string;
+  closed: string;
+}
+
+export interface FooterTranslations {
+  description: string;
+  quickLinks: string;
+  categories: string;
+  contact: string;
+  copyright: string;
+}
+
+export interface CommonTranslations {
+  cart: string;
+}
+
+export interface LanguageTranslations {
+  nav: NavigationTranslations;
+  hero: HeroTranslations;
+  features: FeaturesTranslations;
+  products: ProductsTranslations;
+  productDetail: ProductDetailTranslations;
+  cart: CartTranslations;
+  contact: ContactTranslations;
+  footer: FooterTranslations;
+  common: CommonTranslations;
+}
+
+export interface Translations {
+  es: LanguageTranslations;
+  en: LanguageTranslations;
+}
+
+export const translations: Translations = {
   es: {
     nav: {
       home: "Inicio",
       products: "Productos",
       offers: "Ofertas",
-      contact: "Contacto"
+      contact: "Contacto",
     },
     hero: {
       title: "Comodidad y Estilo",
       subtitle: "para tu Hogar",
-      description: "Descubre nuestra colección exclusiva de calzado para hogar. Diseñado para ofrecerte el máximo confort sin sacrificar el estilo.",
+      description:
+        "Descubre nuestra colección exclusiva de calzado para hogar. Diseñado para ofrecerte el máximo confort sin sacrificar el estilo.",
       viewProducts: "Ver Productos",
       specialOffers: "Ofertas Especiales",
       customers: "Clientes Felices",
       models: "Modelos",
-      support: "Soporte"
+      support: "Soporte",
     },
     features: {
       title: "¿Por qué elegir CalzadoHogar?",
-      subtitle: "Nos especializamos en calzado de hogar que combina estilo, comodidad y durabilidad",
+      subtitle:
+        "Nos especializamos en calzado de hogar que combina estilo, comodidad y durabilidad",
       comfort: {
         title: "Comodidad Extrema",
-        description: "Diseñados para brindarte el máximo confort en tu hogar"
+        description: "Diseñados para brindarte el máximo confort en tu hogar",
       },
       quality: {
         title: "Calidad Garantizada",
-        description: "Materiales premium y duraderos para larga vida útil"
+        description: "Materiales premium y duraderos para larga vida útil",
       },
       shipping: {
         title: "Envío Rápido",
-        description: "Recibe tus pedidos en 24-48 horas en toda España"
+        description: "Recibe tus pedidos en 24-48 horas en toda España",
       },
       madeInSpain: {
         title: "Fabricado en España",
-        description: "Todos nuestros calzados son diseñados y elaborados en España"
-      }
+        description: "Todos nuestros calzados son diseñados y elaborados en España",
+      },
     },
     products: {
       title: "Nuestros Productos",
@@ -43,7 +161,7 @@ export const translations = {
       viewAll: "Ver Todos los Productos",
       addToCart: "Añadir",
       featuredBadge: "Destacado",
-      reviews: "reseñas"
+      reviews: "reseñas",
     },
     productDetail: {
       addToCart: "Añadir al Carrito",
@@ -52,7 +170,7 @@ export const translations = {
       quantity: "Cantidad",
       characteristics: "Características",
       notFound: "Producto no encontrado",
-      backToProducts: "Volver a Productos"
+      backToProducts: "Volver a Productos",
     },
     cart: {
       title: "Tu Carrito",
@@ -66,7 +184,7 @@ export const translations = {
       total: "Total",
       free: "Gratis",
       checkout: "Proceder al Pago",
-      continueShopping: "Continuar Comprando"
+      continueShopping: "Continuar Comprando",
     },
     contact: {
       title: "Contacto",
@@ -84,55 +202,56 @@ export const translations = {
       mondayFriday: "Lunes a Viernes",
       saturday: "Sábado",
       sunday: "Domingo",
-      closed: "Cerrado"
+      closed: "Cerrado",
     },
     footer: {
       description: "Tu tienda especializada en calzado cómodo y elegante para el hogar.",
       quickLinks: "Enlaces Rápidos",
       categories: "Categorías",
       contact: "Contacto",
-      copyright: "Todos los derechos reservados."
+      copyright: "Todos los derechos reservados.",
     },
     common: {
-      cart: "Carrito"
-    }
+      cart: "Carrito",
+    },
   },
   en: {
     nav: {
       home: "Home",
       products: "Products",
       offers: "Offers",
-      contact: "Contact"
+      contact: "Contact",
     },
     hero: {
       title: "Comfort and Style",
       subtitle: "for your Home",
-      description: "Discover our exclusive collection of home footwear. Designed to offer you maximum comfort without sacrificing style.",
+      description:
+        "Discover our exclusive collection of home footwear. Designed to offer you maximum comfort without sacrificing style.",
       viewProducts: "View Products",
       specialOffers: "Special Offers",
       customers: "Happy Customers",
       models: "Models",
-      support: "Support"
+      support: "Support",
     },
     features: {
       title: "Why Choose CalzadoHogar?",
       subtitle: "We specialize in home footwear that combines style, comfort and durability",
       comfort: {
         title: "Extreme Comfort",
-        description: "Designed to provide you with maximum comfort at home"
+        description: "Designed to provide you with maximum comfort at home",
       },
       quality: {
         title: "Guaranteed Quality",
-        description: "Premium and durable materials for long life"
+        description: "Premium and durable materials for long life",
       },
       shipping: {
         title: "Fast Shipping",
-        description: "Receive your orders in 24-48 hours throughout Spain"
+        description: "Receive your orders in 24-48 hours throughout Spain",
       },
       madeInSpain: {
         title: "Made in Spain",
-        description: "All our footwear is designed and crafted in Spain"
-      }
+        description: "All our footwear is designed and crafted in Spain",
+      },
     },
     products: {
       title: "Our Products",
@@ -141,7 +260,7 @@ export const translations = {
       viewAll: "View All Products",
       addToCart: "Add",
       featuredBadge: "Featured",
-      reviews: "reviews"
+      reviews: "reviews",
     },
     productDetail: {
       addToCart: "Add to Cart",
@@ -150,7 +269,7 @@ export const translations = {
       quantity: "Quantity",
       characteristics: "Characteristics",
       notFound: "Product not found",
-      backToProducts: "Back to Products"
+      backToProducts: "Back to Products",
     },
     cart: {
       title: "Your Cart",
@@ -164,7 +283,7 @@ export const translations = {
       total: "Total",
       free: "Free",
       checkout: "Proceed to Checkout",
-      continueShopping: "Continue Shopping"
+      continueShopping: "Continue Shopping",
     },
     contact: {
       title: "Contact",
@@ -182,17 +301,17 @@ export const translations = {
       mondayFriday: "Monday to Friday",
       saturday: "Saturday",
       sunday: "Sunday",
-      closed: "Closed"
+      closed: "Closed",
     },
     footer: {
       description: "Your specialized store in comfortable and elegant home footwear.",
       quickLinks: "Quick Links",
       categories: "Categories",
       contact: "Contact",
-      copyright: "All rights reserved."
+      copyright: "All rights reserved.",
     },
     common: {
-      cart: "Cart"
-    }
-  }
+      cart: "Cart",
+    },
+  },
 };

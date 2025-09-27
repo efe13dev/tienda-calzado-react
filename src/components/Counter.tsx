@@ -1,21 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
-const Counter = ({ target, duration = 2000, suffix = '' }) => {
-  const [count, setCount] = useState(0);
+interface CounterProps {
+  target: number;
+  duration?: number;
+  suffix?: string;
+}
+
+const Counter = ({ target, duration = 2000, suffix = "" }: CounterProps) => {
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    let startTime;
-    let animationId;
+    let startTime: number;
+    let animationId: number;
 
-    const animate = (timestamp) => {
+    const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       const percentage = Math.min(progress / duration, 1);
-      
+
       // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
       const currentCount = Math.floor(target * easeOutQuart);
-      
+
       setCount(currentCount);
 
       if (percentage < 1) {
@@ -36,7 +42,8 @@ const Counter = ({ target, duration = 2000, suffix = '' }) => {
 
   return (
     <span>
-      {count}{suffix}
+      {count}
+      {suffix}
     </span>
   );
 };

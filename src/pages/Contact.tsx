@@ -1,57 +1,61 @@
-import { useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { useLanguage } from '../contexts/useLanguage.js';
-import { translations } from '../data/translations';
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import React, { useState } from "react";
+
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import { useLanguage } from "../contexts/useLanguage";
+import { translations } from "../data/translations.ts";
+
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const { language } = useLanguage();
   const t = translations[language];
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Formulario enviado:', formData);
-    alert('Gracias por contactarnos. Te responderemos pronto.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+
+    alert("Gracias por contactarnos. Te responderemos pronto.");
+    setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header cartCount={0} />
-      
+
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              {t.contact.title}
-            </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {t.contact.subtitle}
-            </p>
+          <div className="mb-12 text-center">
+            <h1 className="mb-4 text-4xl font-bold text-gray-900">{t.contact.title}</h1>
+            <p className="mx-auto max-w-2xl text-lg text-gray-600">{t.contact.subtitle}</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.sendMessage}</h2>
-                
+              <div className="rounded-lg bg-white p-8 shadow-md">
+                <h2 className="mb-6 text-2xl font-bold text-gray-900">{t.contact.sendMessage}</h2>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-700">
                       {t.contact.name}
                     </label>
                     <input
@@ -61,12 +65,15 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white text-gray-900"
+                      className="focus:ring-primary-500 w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    >
                       {t.contact.email}
                     </label>
                     <input
@@ -76,12 +83,15 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white text-gray-900"
+                      className="focus:ring-primary-500 w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="subject"
+                      className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    >
                       {t.contact.subject}
                     </label>
                     <input
@@ -91,12 +101,15 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white text-gray-900"
+                      className="focus:ring-primary-500 w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2"
                     />
                   </div>
-                  
+
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                    >
                       {t.contact.message}
                     </label>
                     <textarea
@@ -106,65 +119,68 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white text-gray-900"
+                      className="focus:ring-primary-500 w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-transparent focus:ring-2"
                     ></textarea>
                   </div>
-                  
-                  <button type="submit" className="btn-primary w-full flex items-center justify-center">
-                    <Send className="w-5 h-5 mr-2" />
+
+                  <button
+                    type="submit"
+                    className="btn-primary flex w-full items-center justify-center"
+                  >
+                    <Send className="mr-2 h-5 w-5" />
                     {t.contact.send}
                   </button>
                 </form>
               </div>
             </div>
-            
+
             <div>
-              <div className="bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.contactInfo}</h2>
-                
+              <div className="rounded-lg bg-white p-8 shadow-md">
+                <h2 className="mb-6 text-2xl font-bold text-gray-900">{t.contact.contactInfo}</h2>
+
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <Mail className="w-6 h-6 text-primary-600" />
+                      <div className="bg-primary-100 flex h-12 w-12 items-center justify-center rounded-lg">
+                        <Mail className="text-primary-600 h-6 w-6" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{t.contact.email}</h3>
+                      <h3 className="mb-1 font-semibold text-gray-900">{t.contact.email}</h3>
                       <p className="text-gray-600">info@calzadohogar.com</p>
                       <p className="text-gray-600">soporte@calzadohogar.com</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <Phone className="w-6 h-6 text-primary-600" />
+                      <div className="bg-primary-100 flex h-12 w-12 items-center justify-center rounded-lg">
+                        <Phone className="text-primary-600 h-6 w-6" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{t.contact.phone}</h3>
+                      <h3 className="mb-1 font-semibold text-gray-900">{t.contact.phone}</h3>
                       <p className="text-gray-600">+34 900 123 456</p>
                       <p className="text-gray-600">{t.contact.mondayFriday}: 9:00 - 18:00</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-primary-600" />
+                      <div className="bg-primary-100 flex h-12 w-12 items-center justify-center rounded-lg">
+                        <MapPin className="text-primary-600 h-6 w-6" />
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{t.contact.address}</h3>
+                      <h3 className="mb-1 font-semibold text-gray-900">{t.contact.address}</h3>
                       <p className="text-gray-600">Calle Principal 123</p>
                       <p className="text-gray-600">28001 Madrid, España</p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="mt-8">
-                  <h3 className="font-semibold text-gray-900 mb-4">{t.contact.schedule}</h3>
+                  <h3 className="mb-4 font-semibold text-gray-900">{t.contact.schedule}</h3>
                   <div className="space-y-2 text-gray-600">
                     <div className="flex justify-between">
                       <span>{t.contact.mondayFriday}</span>
@@ -185,7 +201,7 @@ const Contact = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

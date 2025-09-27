@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Poppins:wght@400;600;700;900&display=swap");
 @import "tailwindcss";
 
 @layer base {
@@ -9,6 +10,15 @@
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
+  }
+
+  body,
+  .font-heading {
+    font-family: "Poppins", sans-serif;
+  }
+
+  .font-display {
+    font-family: "Bubblegum Sans", cursive;
   }
 }
 
