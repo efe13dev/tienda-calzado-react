@@ -1,33 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Heart, Share2, ShoppingCart, Star } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import ImageGallery from "../components/ImageGallery";
 import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
+import { useCart } from "../contexts/CartContext";
 import { products } from "../data/products";
 import { translations } from "../data/translations";
 
-interface CartItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  featured?: boolean;
-  quantity: number;
-  selectedSize?: string;
-}
-
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const location = useLocation();
   const [selectedSize, setSelectedSize] = useState<string>("");
-
   const [quantity, setQuantity] = useState<number>(1);
   const { language } = useLanguage();
+  const { addItem, state } = useCart();
   const t = translations[language];
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Obtener el género de los parámetros de búsqueda
+  const searchParams = new URLSearchParams(location.search);
+  const gender = searchParams.get("gender");
 
   const product = products.find((p) => p.id === parseInt(id || "0"));
 
@@ -51,27 +51,10 @@ const ProductDetail = () => {
       return;
     }
 
-    setCart((prevCart) => {
-      const existingItem = prevCart.find(
-        (item) => item.id === product.id && item.selectedSize === selectedSize,
-      );
-
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id && item.selectedSize === selectedSize
-            ? { ...item, quantity: item.quantity + quantity }
-            : item,
-        );
-      }
-
-      return [
-        ...prevCart,
-        {
-          ...product,
-          quantity,
-          selectedSize,
-        },
-      ];
+    addItem({
+      ...product,
+      quantity,
+      selectedSize,
     });
   };
 
@@ -82,21 +65,33 @@ const ProductDetail = () => {
         description={`Compra ${product.name} en MisPapes. ${product.description} Calidad garantizada y envío gratis.`}
         keywords={`${product.name}, calzado ${product.gender}, ${product.category}, zapatos online, tienda calzado, MisPapes`}
         canonicalUrl={`https://mispapes.com/producto/${product.id}`}
-        ogImage={product.image}
+        ogImage={product.images[0]}
         ogType="product"
         product={product}
       />
-      <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
+      <Header cartCount={state.totalItems} />
 
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">
+          <div className="mb-6">
+            <Link
+              to={gender ? `/productos?gender=${gender}` : "/productos"}
+              className="text-primary-600 inline-flex items-center transition-colors duration-300 hover:text-blue-600"
+            >
+              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Volver a productos
+            </Link>
+          </div>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="h-96 w-full rounded-lg object-cover shadow-lg"
-              />
+              <ImageGallery images={product.images} productName={product.name} />
             </div>
 
             <div>

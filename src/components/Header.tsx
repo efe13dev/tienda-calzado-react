@@ -24,11 +24,13 @@ const Header = ({ cartCount }: HeaderProps) => {
         <div className="flex h-16 items-center justify-between">
           <Link
             to="/"
-            className="font-display text-primary-600 transform text-4xl font-black transition-transform duration-200 hover:scale-105"
+            className="flex transform items-center gap-2 transition-all duration-300 hover:scale-105 active:scale-95 active:rotate-3"
           >
-            MisPapes
+            <span className="font-display text-primary-600 hover:text-primary-700 text-4xl font-black transition-colors duration-300">
+              MisPapes
+            </span>
+            <img src={Pantufla} alt="MisPapes" className="h-16" />
           </Link>
-          <img src={Pantufla} alt="MisPapes" className="h-8" />
           <nav className="hidden space-x-8 md:flex">
             <Link
               to="/"

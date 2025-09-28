@@ -1,30 +1,23 @@
 import { Mars, Snowflake, Sun, Venus } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
+import { useCart } from "../contexts/CartContext";
 import { products } from "../data/products";
 import { translations } from "../data/translations";
-
-interface CartItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  featured?: boolean;
-  quantity: number;
-}
 
 type GenderSelection = null | "hombre" | "mujer";
 type Season = "todos" | "verano" | "invierno";
 
 const Products = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedGender, setSelectedGender] = useState<GenderSelection>(null);
+  const { state } = useCart();
 
   const getCurrentSeason = (): Season => {
     const currentMonth = new Date().getMonth() + 1;
@@ -35,6 +28,15 @@ const Products = () => {
   const [selectedSeason, setSelectedSeason] = useState<Season>(getCurrentSeason());
   const { language } = useLanguage();
   const t = translations[language];
+
+  // Efecto para manejar el parámetro de género en la URL
+  useEffect(() => {
+    const genderParam = searchParams.get("gender");
+
+    if (genderParam === "hombre" || genderParam === "mujer") {
+      setSelectedGender(genderParam);
+    }
+  }, [searchParams]);
 
   const seasons: Season[] = ["todos", "verano", "invierno"];
 
@@ -58,27 +60,6 @@ const Products = () => {
 
   const finalProducts = filterProductsBySeason(filteredProducts);
 
-  const addToCart = (product: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-    featured?: boolean;
-  }) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item,
-        );
-      }
-
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-  };
-
   const renderProducts = () => {
     if (!selectedGender) return null;
 
@@ -97,8 +78,11 @@ const Products = () => {
             )}
           </h2>
           <button
-            onClick={() => setSelectedGender(null)}
-            className="flex items-center rounded-lg border-2 border-gray-300 bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-200"
+            onClick={() => {
+              setSelectedGender(null);
+              setSearchParams({});
+            }}
+            className="btn-primary flex items-center transition-colors duration-300 hover:text-blue-600"
           >
             ← Volver
           </button>
@@ -139,7 +123,11 @@ const Products = () => {
         {finalProducts.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {finalProducts.map((product) => (
-              <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                gender={selectedGender || undefined}
+              />
             ))}
           </div>
         ) : (
@@ -160,7 +148,7 @@ const Products = () => {
         canonicalUrl="https://mispapes.com/productos"
         ogImage="https://mispapes.com/og-products.jpg"
       />
-      <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
+      <Header cartCount={state.totalItems} />
 
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">

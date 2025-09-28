@@ -16,7 +16,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  image: string;
+  images: string[];
   category: ProductCategory;
   sizes: ProductSize[];
   featured: boolean;
@@ -30,7 +30,11 @@ export const products: Product[] = [
     name: "Zapatillas de Casa Premium Hombre",
     description: "Zapatillas cómodas y elegantes para uso diario en casa",
     price: 29.99,
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "zapatillas",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -43,7 +47,11 @@ export const products: Product[] = [
     name: "Pantuflas de Almohadilla Mujer",
     description: "Pantuflas suaves con almohadilla extra para máximo confort",
     price: 24.99,
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "pantuflas",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -56,7 +64,11 @@ export const products: Product[] = [
     name: "Sandalias de Casa Unisex",
     description: "Sandalias ligeras perfectas para verano",
     price: 19.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "sandalias",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -69,7 +81,11 @@ export const products: Product[] = [
     name: "Botines de Invierno Hombre",
     description: "Botines cálidos y acogedores para los meses fríos",
     price: 39.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "botines",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -82,7 +98,11 @@ export const products: Product[] = [
     name: "Chanclas de Baño Unisex",
     description: "Chanclas antideslizantes perfectas para baño y piscina",
     price: 14.99,
-    image: "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "chanclas",
     sizes: [36, 37, 38, 39, 40, 41],
     featured: false,
@@ -94,7 +114,11 @@ export const products: Product[] = [
     name: "Mocasines de Casa Mujer",
     description: "Mocasines clásicos con suela antideslizante",
     price: 34.99,
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "mocasines",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -107,7 +131,11 @@ export const products: Product[] = [
     name: "Zapatillas Deportivas Mujer",
     description: "Zapatillas ligeras y transpirables para ejercicio en casa",
     price: 32.99,
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "zapatillas",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -120,7 +148,11 @@ export const products: Product[] = [
     name: "Pantuflas Térmicas Hombre",
     description: "Pantuflas con forro térmico para máxima calidez",
     price: 27.99,
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "pantuflas",
     sizes: [40, 41, 42, 43, 44, 45],
     featured: false,
@@ -133,7 +165,11 @@ export const products: Product[] = [
     name: "Zapatillas Urbanas Hombre",
     description: "Zapatillas modernas para uso diario en la ciudad",
     price: 35.99,
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "zapatillas",
     sizes: [40, 41, 42, 43, 44, 45],
     featured: true,
@@ -145,7 +181,11 @@ export const products: Product[] = [
     name: "Sandalias Deportivas Hombre",
     description: "Sandalias cómodas para actividades al aire libre",
     price: 22.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "sandalias",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -158,7 +198,11 @@ export const products: Product[] = [
     name: "Botines Cuero Hombre",
     description: "Botines elegantes de cuero genuino",
     price: 49.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "botines",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -171,7 +215,11 @@ export const products: Product[] = [
     name: "Chanclas Playa Hombre",
     description: "Chanclas ligeras perfectas para la playa",
     price: 16.99,
-    image: "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "chanclas",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -184,7 +232,11 @@ export const products: Product[] = [
     name: "Mocasines Clásicos Hombre",
     description: "Mocasines tradicionales con suela de goma",
     price: 42.99,
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "mocasines",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -197,7 +249,11 @@ export const products: Product[] = [
     name: "Zapatillas Running Hombre",
     description: "Zapatillas técnicas para running y ejercicio",
     price: 45.99,
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "zapatillas",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -210,7 +266,11 @@ export const products: Product[] = [
     name: "Pantuflas Memory Foam Hombre",
     description: "Pantuflas con memoria de forma para máximo confort",
     price: 31.99,
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "pantuflas",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -223,7 +283,11 @@ export const products: Product[] = [
     name: "Sandalias Piscina Hombre",
     description: "Sandalias acuáticas resistentes al cloro",
     price: 18.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "sandalias",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -236,7 +300,11 @@ export const products: Product[] = [
     name: "Botines Invierno Hombre",
     description: "Botines forrados para protección contra el frío",
     price: 54.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "botines",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -249,7 +317,11 @@ export const products: Product[] = [
     name: "Chanclas Spa Hombre",
     description: "Chanclas suaves para spa y relax",
     price: 19.99,
-    image: "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "chanclas",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -262,7 +334,11 @@ export const products: Product[] = [
     name: "Mocasines Elegantes Hombre",
     description: "Mocasines de diseño para ocasiones especiales",
     price: 47.99,
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "mocasines",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -275,7 +351,11 @@ export const products: Product[] = [
     name: "Zapatillas Casual Hombre",
     description: "Zapatillas versátiles para uso diario",
     price: 33.99,
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "zapatillas",
     sizes: [40, 41, 42, 43, 44, 45],
 
@@ -289,7 +369,11 @@ export const products: Product[] = [
     name: "Zapatillas Moda Mujer",
     description: "Zapatillas elegantes con diseño moderno",
     price: 37.99,
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "zapatillas",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -302,7 +386,11 @@ export const products: Product[] = [
     name: "Sandalias Verano Mujer",
     description: "Sandalias ligeras perfectas para el verano",
     price: 24.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "sandalias",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -315,7 +403,11 @@ export const products: Product[] = [
     name: "Botines Estilo Mujer",
     description: "Botines con estilo para looks urbanos",
     price: 44.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "botines",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -328,7 +420,11 @@ export const products: Product[] = [
     name: "Chanclas Playa Mujer",
     description: "Chanclas coloridas para días de playa",
     price: 17.99,
-    image: "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "chanclas",
     sizes: [36, 37, 38, 39, 40, 41],
     featured: false,
@@ -340,7 +436,11 @@ export const products: Product[] = [
     name: "Mocasines Mujer",
     description: "Mocasines cómodos para uso diario",
     price: 38.99,
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "mocasines",
     sizes: [36, 37, 38, 39, 40, 41],
     featured: false,
@@ -352,7 +452,11 @@ export const products: Product[] = [
     name: "Zapatillas Deportivas Mujer",
     description: "Zapatillas ligeras para ejercicio y deporte",
     price: 41.99,
-    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "zapatillas",
     sizes: [36, 37, 38, 39, 40, 41],
 
@@ -365,7 +469,11 @@ export const products: Product[] = [
     name: "Pantuflas Lujo Mujer",
     description: "Pantuflas de lujo con materiales premium",
     price: 36.99,
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "pantuflas",
     sizes: [36, 37, 38, 39, 40, 41],
     featured: false,
@@ -377,7 +485,11 @@ export const products: Product[] = [
     name: "Sandalias Elegantes Mujer",
     description: "Sandalias finas para ocasiones especiales",
     price: 29.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "sandalias",
     sizes: [36, 37, 38, 39, 40, 41],
     featured: false,
@@ -389,7 +501,11 @@ export const products: Product[] = [
     name: "Botines Invierno Mujer",
     description: "Botines cálidos para los meses fríos",
     price: 48.99,
-    image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "botines",
     sizes: [36, 37, 38, 39, 40, 41],
     featured: false,
@@ -401,7 +517,11 @@ export const products: Product[] = [
     name: "Chanclas Spa Mujer",
     description: "Chanclas suaves para spa y relax",
     price: 21.99,
-    image: "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "chanclas",
     sizes: [36, 37, 38, 39, 40, 41],
     featured: false,
@@ -413,7 +533,11 @@ export const products: Product[] = [
     name: "Mocasines Primavera Mujer",
     description: "Mocasines ligeros perfectos para primavera",
     price: 35.99,
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1560343090-f0e9cdd79d92?w=400&h=400&fit=crop",
+    ],
     category: "mocasines",
     sizes: [36, 37, 38, 39, 40, 41],
 

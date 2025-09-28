@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import Features from "../components/Features";
 import Footer from "../components/Footer";
@@ -7,44 +8,14 @@ import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
+import { useCart } from "../contexts/CartContext";
 import { products } from "../data/products.ts";
 import { translations } from "../data/translations.ts";
 
-interface CartItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  featured?: boolean;
-  quantity: number;
-}
-
 const Home = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
   const { language } = useLanguage();
+  const { state } = useCart();
   const t = translations[language];
-
-  const addToCart = (product: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-    featured?: boolean;
-  }) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item,
-        );
-      }
-
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-  };
 
   const featuredProducts = products.filter((product) => product.featured);
 
@@ -58,7 +29,7 @@ const Home = () => {
         ogImage="https://mispapes.com/og-home.jpg"
       />
 
-      <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
+      <Header cartCount={state.totalItems} />
 
       <main className="flex-grow">
         <Hero />
@@ -75,14 +46,25 @@ const Home = () => {
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
 
             <div className="mt-12 text-center">
-              <a href="/productos" className="btn-primary inline-flex items-center">
+              <Link
+                to="/productos"
+                className="btn-primary inline-flex items-center transition-colors duration-300 hover:text-blue-600"
+              >
                 {t.products.viewAll}
-              </a>
+                <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </Link>
             </div>
           </div>
         </section>

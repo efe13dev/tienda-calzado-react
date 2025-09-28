@@ -1,75 +1,19 @@
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
+import { useCart } from "../contexts/CartContext";
 import { translations } from "../data/translations.ts";
 
-interface CartItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  featured?: boolean;
-  quantity: number;
-  selectedSize?: string;
-  selectedColor?: string;
-}
-
 const Cart = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
   const { language } = useLanguage();
+  const { state, updateQuantity, removeItem } = useCart();
   const t = translations[language];
 
-  useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  const updateQuantity = (id: number, size: string, color: string, newQuantity: number) => {
-    if (newQuantity < 1) {
-      removeFromCart(id, size, color);
-
-      return;
-    }
-
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id && item.selectedSize === size && item.selectedColor === color
-          ? { ...item, quantity: newQuantity }
-          : item,
-      ),
-    );
-  };
-
-  const removeFromCart = (id: number, size: string, color: string) => {
-    setCart((prevCart) =>
-      prevCart.filter(
-        (item) => !(item.id === id && item.selectedSize === size && item.selectedColor === color),
-      ),
-    );
-  };
-
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
-  const getTotalItems = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
-  };
-
-  if (cart.length === 0) {
+  if (state.items.length === 0) {
     return (
       <div className="flex min-h-screen flex-col bg-white">
         <SEOHybrid
@@ -79,7 +23,7 @@ const Cart = () => {
           canonicalUrl="https://mispapes.com/carrito"
           ogImage="https://mispapes.com/og-cart.jpg"
         />
-        <Header cartCount={0} />
+        <Header cartCount={state.totalItems} />
 
         <main className="flex flex-grow items-center justify-center py-8">
           <div className="text-center">
@@ -106,7 +50,7 @@ const Cart = () => {
         canonicalUrl="https://mispapes.com/carrito"
         ogImage="https://mispapes.com/og-cart.jpg"
       />
-      <Header cartCount={getTotalItems()} />
+      <Header cartCount={state.totalItems} />
 
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">
@@ -116,13 +60,13 @@ const Cart = () => {
             <div className="lg:col-span-2">
               <div className="overflow-hidden rounded-lg bg-white shadow-md">
                 <div className="p-6">
-                  {cart.map((item, index) => (
+                  {state.items.map((item, index) => (
                     <div
                       key={index}
                       className="flex items-center gap-4 border-b py-4 last:border-b-0"
                     >
                       <img
-                        src={item.image}
+                        src={item.images[0]}
                         alt={item.name}
                         className="h-20 w-20 rounded-lg object-cover"
                       />
@@ -186,7 +130,9 @@ const Cart = () => {
                 <div className="mb-6 space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">{t.cart.subtotal}</span>
-                    <span className="font-medium text-gray-900">€{getTotalPrice().toFixed(2)}</span>
+                    <span className="font-medium text-gray-900">
+                      €{state.totalPrice.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-300">{t.cart.shipping}</span>
@@ -195,14 +141,14 @@ const Cart = () => {
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-300">{t.cart.tax}</span>
                     <span className="font-medium text-gray-900 dark:text-white">
-                      €{(getTotalPrice() * 0.21).toFixed(2)}
+                      €{(state.totalPrice * 0.21).toFixed(2)}
                     </span>
                   </div>
                   <div className="border-t pt-3">
                     <div className="flex justify-between text-lg font-bold">
                       <span className="text-gray-900">{t.cart.total}</span>
                       <span className="text-primary-600">
-                        €{(getTotalPrice() * 1.21).toFixed(2)}
+                        €{(state.totalPrice * 1.21).toFixed(2)}
                       </span>
                     </div>
                   </div>

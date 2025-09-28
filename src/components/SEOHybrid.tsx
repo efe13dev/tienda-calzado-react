@@ -40,11 +40,7 @@ const SEOHybrid: React.FC<SEOHybridProps> = ({
   useEffect(() => {
     const updateMetaTags = () => {
       // Función helper para crear o actualizar meta tags
-      const setMetaTag = (
-        selector: string,
-        content: string,
-        attribute = "content",
-      ) => {
+      const setMetaTag = (selector: string, content: string, attribute = "content") => {
         let element = document.querySelector(selector) as HTMLMetaElement;
 
         if (!element) {
@@ -157,10 +153,7 @@ const SEOHybrid: React.FC<SEOHybridProps> = ({
             "@type": "PostalAddress",
             addressCountry: "ES",
           },
-          sameAs: [
-            "https://facebook.com/mispapes",
-            "https://instagram.com/mispapes",
-          ],
+          sameAs: ["https://facebook.com/mispapes", "https://instagram.com/mispapes"],
           // Añadimos información específica para zapatillas de casa
           category: "Zapatillas de casa y calzado para hogar",
           makesOffer: {
@@ -172,9 +165,7 @@ const SEOHybrid: React.FC<SEOHybridProps> = ({
       };
 
       // Actualizar datos estructurados
-      let structuredDataScript = document.querySelector(
-        'script[type="application/ld+json"]',
-      );
+      let structuredDataScript = document.querySelector('script[type="application/ld+json"]');
 
       if (!structuredDataScript) {
         structuredDataScript = document.createElement("script");
@@ -188,16 +179,7 @@ const SEOHybrid: React.FC<SEOHybridProps> = ({
     const timer = setTimeout(updateMetaTags, 100);
 
     return () => clearTimeout(timer);
-  }, [
-    fullTitle,
-    description,
-    keywords,
-    canonicalUrl,
-    ogImage,
-    ogType,
-    noIndex,
-    product,
-  ]);
+  }, [fullTitle, description, keywords, canonicalUrl, ogImage, ogType, noIndex, product]);
 
   // Usar React Helmet solo para title y description que sabemos que funcionan
   return (

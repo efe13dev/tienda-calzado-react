@@ -139,13 +139,11 @@ export const translations: Translations = {
         "Nos especializamos en zapatillas de estar en casa que combinan estilo, comodidad y durabilidad",
       comfort: {
         title: "Comodidad Extrema",
-        description:
-          "Zapatillas diseñadas para brindarte el máximo confort en tu hogar",
+        description: "Zapatillas diseñadas para brindarte el máximo confort en tu hogar",
       },
       quality: {
         title: "Calidad Garantizada",
-        description:
-          "Materiales premium y duraderos para zapatillas de larga vida útil",
+        description: "Materiales premium y duraderos para zapatillas de larga vida útil",
       },
       shipping: {
         title: "Envío Rápido",
@@ -153,14 +151,12 @@ export const translations: Translations = {
       },
       madeInSpain: {
         title: "Fabricado en España",
-        description:
-          "Todas nuestras zapatillas son diseñadas y elaboradas en España",
+        description: "Todas nuestras zapatillas son diseñadas y elaboradas en España",
       },
     },
     products: {
       title: "Nuestras Zapatillas",
-      subtitle:
-        "Explora nuestra completa colección de zapatillas para estar en casa",
+      subtitle: "Explora nuestra completa colección de zapatillas para estar en casa",
       featured: "Zapatillas Destacadas",
       viewAll: "Ver Todos los Productos",
       addToCart: "Añadir",
@@ -179,8 +175,7 @@ export const translations: Translations = {
     cart: {
       title: "Tu Carrito",
       empty: "Tu carrito está vacío",
-      emptyMessage:
-        "Parece que aún no has añadido ningún producto a tu carrito.",
+      emptyMessage: "Parece que aún no has añadido ningún producto a tu carrito.",
       viewProducts: "Ver Productos",
       summary: "Resumen del Pedido",
       subtotal: "Subtotal",
@@ -193,8 +188,7 @@ export const translations: Translations = {
     },
     contact: {
       title: "Contacto",
-      subtitle:
-        "Estamos aquí para ayudarte. Contáctanos para cualquier pregunta o sugerencia.",
+      subtitle: "Estamos aquí para ayudarte. Contáctanos para cualquier pregunta o sugerencia.",
       sendMessage: "Envíanos un Mensaje",
       name: "Nombre",
       email: "Email",
@@ -211,8 +205,7 @@ export const translations: Translations = {
       closed: "Cerrado",
     },
     footer: {
-      description:
-        "Tu tienda especializada en zapatillas cómodas y elegantes para estar en casa.",
+      description: "Tu tienda especializada en zapatillas cómodas y elegantes para estar en casa.",
       quickLinks: "Enlaces Rápidos",
       categories: "Categorías",
       contact: "Contacto",
@@ -242,12 +235,10 @@ export const translations: Translations = {
     },
     features: {
       title: "Why Choose MisPapes?",
-      subtitle:
-        "We specialize in home footwear that combines style, comfort and durability",
+      subtitle: "We specialize in home footwear that combines style, comfort and durability",
       comfort: {
         title: "Extreme Comfort",
-        description:
-          "Slippers designed to provide you with maximum comfort at home",
+        description: "Slippers designed to provide you with maximum comfort at home",
       },
       quality: {
         title: "Guaranteed Quality",
@@ -296,8 +287,7 @@ export const translations: Translations = {
     },
     contact: {
       title: "Contact",
-      subtitle:
-        "We are here to help. Contact us for any questions or suggestions.",
+      subtitle: "We are here to help. Contact us for any questions or suggestions.",
       sendMessage: "Send us a Message",
       name: "Name",
       email: "Email",
@@ -314,8 +304,7 @@ export const translations: Translations = {
       closed: "Closed",
     },
     footer: {
-      description:
-        "Your specialized store in comfortable and elegant house slippers.",
+      description: "Your specialized store in comfortable and elegant house slippers.",
       quickLinks: "Quick Links",
       categories: "Categories",
       contact: "Contact",

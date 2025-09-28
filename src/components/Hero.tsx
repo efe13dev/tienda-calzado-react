@@ -19,28 +19,30 @@ const Hero = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>
-            <div className="mb-6 h-32 lg:h-40">
-              <h1 className="text-4xl font-bold text-gray-900 lg:text-6xl">
-                <AnimatedText
-                  text={t.hero.title}
-                  className="block"
-                  delay={300}
-                  onComplete={() => setShowSubtitle(true)}
-                />
-                {showSubtitle && (
+            <div className="mb-8 min-h-[120px] lg:min-h-[160px]">
+              <div className="space-y-4">
+                <h1 className="text-4xl font-bold text-gray-900 lg:text-6xl">
+                  <AnimatedText
+                    text={t.hero.title}
+                    className="block"
+                    delay={300}
+                    onComplete={() => setShowSubtitle(true)}
+                  />
+                </h1>
+                <h2
+                  className={`text-primary-600 text-2xl font-semibold transition-opacity duration-300 lg:text-4xl ${showSubtitle ? "opacity-100" : "opacity-0"}`}
+                >
                   <AnimatedText
                     text={t.hero.subtitle}
-                    className="text-primary-600 mt-2 block"
+                    className="block"
                     delay={200}
                     onComplete={() => setStartCounters(true)}
                   />
-                )}
-              </h1>
+                </h2>
+              </div>
             </div>
 
-            <p className="mb-8 text-lg leading-relaxed text-gray-600">
-              {t.hero.description}
-            </p>
+            <p className="mb-8 text-lg leading-relaxed text-gray-600">{t.hero.description}</p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
@@ -82,9 +84,7 @@ const Hero = () => {
                 <div className="text-gray-600">{t.hero.models}</div>
               </div>
               <div className="text-center">
-                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">
-                  24/7
-                </div>
+                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">24/7</div>
                 <div className="text-gray-600">{t.hero.support}</div>
               </div>
             </div>

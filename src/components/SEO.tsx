@@ -91,10 +91,7 @@ const SEO: React.FC<SEOProps> = ({
         "@type": "PostalAddress",
         addressCountry: "ES",
       },
-      sameAs: [
-        "https://facebook.com/mispapes",
-        "https://instagram.com/mispapes",
-      ],
+      sameAs: ["https://facebook.com/mispapes", "https://instagram.com/mispapes"],
       // Añadimos información específica para zapatillas de casa
       category: "Zapatillas de casa y calzado para hogar",
       makesOffer: {
@@ -139,9 +136,7 @@ const SEO: React.FC<SEOProps> = ({
       <link rel="alternate" hrefLang="es" href={canonicalUrl} />
 
       {/* Datos estructurados JSON-LD */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
     </Helmet>
   );
 };

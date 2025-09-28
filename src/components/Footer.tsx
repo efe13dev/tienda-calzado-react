@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import { useLanguage } from "../contexts/useLanguage";
 import { translations } from "../data/translations.ts";
+import Pantufla from "../assets/pantufla.png";
 
 const Footer = () => {
   const { language } = useLanguage();
@@ -12,7 +13,10 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div>
-            <h3 className="text-primary-400 mb-4 text-xl font-bold">MisPapes</h3>
+            <h3 className="text-primary-400 mb-4 flex items-center gap-2 text-xl font-bold">
+              MisPapes
+              <img src={Pantufla} alt="MisPapes" className="h-10" />
+            </h3>
             <p className="text-gray-400">{t.footer.description}</p>
           </div>
 
