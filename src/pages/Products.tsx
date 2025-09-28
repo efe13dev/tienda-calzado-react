@@ -4,6 +4,7 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
+import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { products } from "../data/products";
 import { translations } from "../data/translations";
@@ -24,12 +25,13 @@ type Season = "todos" | "verano" | "invierno";
 const Products = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [selectedGender, setSelectedGender] = useState<GenderSelection>(null);
-  
+
   const getCurrentSeason = (): Season => {
     const currentMonth = new Date().getMonth() + 1;
-    return (currentMonth >= 3 && currentMonth <= 9) ? "verano" : "invierno";
+
+    return currentMonth >= 3 && currentMonth <= 9 ? "verano" : "invierno";
   };
-  
+
   const [selectedSeason, setSelectedSeason] = useState<Season>(getCurrentSeason());
   const { language } = useLanguage();
   const t = translations[language];
@@ -151,6 +153,13 @@ const Products = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
+      <SEOHybrid
+        title="Catálogo de Productos | MisPapes Tienda de Calzado"
+        description="Explora nuestro catálogo completo de calzado para hombre y mujer. Zapatos, zapatillas, botas y más con la mejor calidad y diseño."
+        keywords="catálogo calzado, productos calzado, zapatos hombre, zapatillas mujer, botas, tienda online calzado, calzado original"
+        canonicalUrl="https://mispapes.com/productos"
+        ogImage="https://mispapes.com/og-products.jpg"
+      />
       <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
 
       <main className="flex-grow py-8">

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { translations } from "../data/translations.ts";
 
@@ -71,6 +72,13 @@ const Cart = () => {
   if (cart.length === 0) {
     return (
       <div className="flex min-h-screen flex-col bg-white">
+        <SEOHybrid
+          title="Carrito de Compra | MisPapes Tienda de Calzado"
+          description="Revisa tu carrito de compra en MisPapes. Calzado de calidad con envío gratis y devoluciones fáciles."
+          keywords="carrito compra, tienda calzado online, zapatos carrito, comprar calzado, MisPapes carrito"
+          canonicalUrl="https://mispapes.com/carrito"
+          ogImage="https://mispapes.com/og-cart.jpg"
+        />
         <Header cartCount={0} />
 
         <main className="flex flex-grow items-center justify-center py-8">
@@ -91,6 +99,13 @@ const Cart = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
+      <SEOHybrid
+        title="Carrito de Compra | MisPapes Tienda de Calzado"
+        description="Revisa tu carrito de compra en MisPapes. Calzado de calidad con envío gratis y devoluciones fáciles."
+        keywords="carrito compra, tienda calzado online, zapatos carrito, comprar calzado, MisPapes carrito"
+        canonicalUrl="https://mispapes.com/carrito"
+        ogImage="https://mispapes.com/og-cart.jpg"
+      />
       <Header cartCount={getTotalItems()} />
 
       <main className="flex-grow py-8">

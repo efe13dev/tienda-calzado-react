@@ -30,8 +30,8 @@ export default {
         },
       },
       fontFamily: {
-        'display': ['Bubblegum Sans', 'cursive'],
-        'heading': ['Poppins', 'sans-serif'],
+        display: ["Bubblegum Sans", "cursive"],
+        heading: ["Poppins", "sans-serif"],
       },
     },
   },

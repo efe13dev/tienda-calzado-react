@@ -101,7 +101,9 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 MisPapes. {t.footer.copyright}</p>
+          <p>
+            &copy; {new Date().getFullYear()} MisPapes. {t.footer.copyright}
+          </p>
         </div>
       </div>
     </footer>

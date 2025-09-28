@@ -38,7 +38,9 @@ const Hero = () => {
               </h1>
             </div>
 
-            <p className="mb-8 text-lg leading-relaxed text-gray-600">{t.hero.description}</p>
+            <p className="mb-8 text-lg leading-relaxed text-gray-600">
+              {t.hero.description}
+            </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
@@ -80,7 +82,9 @@ const Hero = () => {
                 <div className="text-gray-600">{t.hero.models}</div>
               </div>
               <div className="text-center">
-                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">24/7</div>
+                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">
+                  24/7
+                </div>
                 <div className="text-gray-600">{t.hero.support}</div>
               </div>
             </div>
@@ -90,7 +94,7 @@ const Hero = () => {
             <div className="relative z-10">
               <img
                 src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600&h=600&fit=crop"
-                alt="Calzado de hogar"
+                alt="Zapatillas de casa cómodas para estar en casa"
                 className="rounded-lg shadow-2xl"
               />
             </div>

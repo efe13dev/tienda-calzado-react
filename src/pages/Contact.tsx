@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { translations } from "../data/translations.ts";
 
@@ -39,6 +40,13 @@ const Contact = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
+      <SEOHybrid
+        title="Contacto | MisPapes Tienda de Calzado"
+        description="Contacta con MisPapes para cualquier consulta sobre nuestros productos de calzado. Atención personalizada y respuesta rápida."
+        keywords="contacto tienda calzado, atención cliente, zapatos online, soporte calzado, MisPapes contacto"
+        canonicalUrl="https://mispapes.com/contacto"
+        ogImage="https://mispapes.com/og-contact.jpg"
+      />
       <Header cartCount={0} />
 
       <main className="flex-grow py-8">

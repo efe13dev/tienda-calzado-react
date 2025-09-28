@@ -3,6 +3,7 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
+import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { products } from "../data/products";
 import { translations } from "../data/translations";
@@ -47,6 +48,13 @@ const Offers = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
+      <SEOHybrid
+        title="Ofertas y Promociones | MisPapes Tienda de Calzado"
+        description="Descubre nuestras ofertas exclusivas en calzado. Zapatos, zapatillas y botas con descuentos especiales. Calidad garantizada al mejor precio."
+        keywords="ofertas calzado, promociones zapatos, descuentos calzado, zapatos rebajas, tienda calzado ofertas, MisPapes ofertas"
+        canonicalUrl="https://mispapes.com/ofertas"
+        ogImage="https://mispapes.com/og-offers.jpg"
+      />
       <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
 
       <main className="flex-grow py-8">

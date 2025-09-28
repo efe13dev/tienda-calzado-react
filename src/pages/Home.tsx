@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
+import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { products } from "../data/products.ts";
 import { translations } from "../data/translations.ts";
@@ -49,6 +50,14 @@ const Home = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
+      <SEOHybrid
+        title="MisPapes | Zapatillas de Casa: Comodidad para tu Hogar"
+        description="Tienda especializada en zapatillas de estar en casa. Descubre nuestras zapatillas cómodas, pantuflas y calzado para hogar con envío gratis 24-48h. Calidad premium."
+        keywords="zapatillas de casa, pantuflas, calzado para hogar, zapatillas comodas, comprar zapatillas online, calzado estar en casa, zapatillas hogar, pantuflas mujer, zapatillas hombre"
+        canonicalUrl="https://mispapes.com/"
+        ogImage="https://mispapes.com/og-home.jpg"
+      />
+
       <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
 
       <main className="flex-grow">

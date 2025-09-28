@@ -2,6 +2,7 @@ import { Menu, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import Pantufla from "../assets/pantufla.png";
 import { useLanguage } from "../contexts/useLanguage";
 import { translations } from "../data/translations.ts";
 
@@ -21,24 +22,36 @@ const Header = ({ cartCount }: HeaderProps) => {
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="font-display text-primary-600 text-4xl font-black transform hover:scale-105 transition-transform duration-200">
+          <Link
+            to="/"
+            className="font-display text-primary-600 transform text-4xl font-black transition-transform duration-200 hover:scale-105"
+          >
             MisPapes
           </Link>
-
+          <img src={Pantufla} alt="MisPapes" className="h-8" />
           <nav className="hidden space-x-8 md:flex">
-            <Link to="/" className={`transition-colors ${location.pathname === '/' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
+            <Link
+              to="/"
+              className={`transition-colors ${location.pathname === "/" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
+            >
               {t.nav.home}
             </Link>
             <Link
               to="/productos"
-              className={`transition-colors ${location.pathname === '/productos' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
+              className={`transition-colors ${location.pathname === "/productos" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
             >
               {t.nav.products}
             </Link>
-            <Link to="/ofertas" className={`transition-colors ${location.pathname === '/ofertas' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
+            <Link
+              to="/ofertas"
+              className={`transition-colors ${location.pathname === "/ofertas" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
+            >
               {t.nav.offers}
             </Link>
-            <Link to="/contacto" className={`transition-colors ${location.pathname === '/contacto' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
+            <Link
+              to="/contacto"
+              className={`transition-colors ${location.pathname === "/contacto" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
+            >
               {t.nav.contact}
             </Link>
           </nav>
@@ -63,24 +76,27 @@ const Header = ({ cartCount }: HeaderProps) => {
         {isMenuOpen && (
           <nav className="border-t border-gray-200 py-4 md:hidden">
             <div className="flex flex-col space-y-2">
-              <Link to="/" className={`py-2 transition-colors ${location.pathname === '/' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}>
+              <Link
+                to="/"
+                className={`py-2 transition-colors ${location.pathname === "/" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
+              >
                 {t.nav.home}
               </Link>
               <Link
                 to="/productos"
-                className={`py-2 transition-colors ${location.pathname === '/productos' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
+                className={`py-2 transition-colors ${location.pathname === "/productos" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
               >
                 {t.nav.products}
               </Link>
               <Link
                 to="/ofertas"
-                className={`py-2 transition-colors ${location.pathname === '/ofertas' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
+                className={`py-2 transition-colors ${location.pathname === "/ofertas" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
               >
                 {t.nav.offers}
               </Link>
               <Link
                 to="/contacto"
-                className={`py-2 transition-colors ${location.pathname === '/contacto' ? 'text-primary-600 font-semibold' : 'text-gray-700 hover:text-primary-600'}`}
+                className={`py-2 transition-colors ${location.pathname === "/contacto" ? "text-primary-600 font-semibold" : "hover:text-primary-600 text-gray-700"}`}
               >
                 {t.nav.contact}
               </Link>

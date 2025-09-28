@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { products } from "../data/products";
 import { translations } from "../data/translations";
@@ -76,6 +77,15 @@ const ProductDetail = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
+      <SEOHybrid
+        title={`${product.name} | MisPapes Tienda de Calzado`}
+        description={`Compra ${product.name} en MisPapes. ${product.description} Calidad garantizada y envío gratis.`}
+        keywords={`${product.name}, calzado ${product.gender}, ${product.category}, zapatos online, tienda calzado, MisPapes`}
+        canonicalUrl={`https://mispapes.com/producto/${product.id}`}
+        ogImage={product.image}
+        ogType="product"
+        product={product}
+      />
       <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
 
       <main className="flex-grow py-8">

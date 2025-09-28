@@ -123,41 +123,45 @@ export const translations: Translations = {
       contact: "Contacto",
     },
     hero: {
-      title: "Comodidad y Estilo",
-      subtitle: "para tu Hogar",
+      title: "Zapatillas de Casa",
+      subtitle: "Comodidad para tu Hogar",
       description:
-        "Descubre nuestra colección exclusiva de calzado para hogar. Diseñado para ofrecerte el máximo confort sin sacrificar el estilo.",
-      viewProducts: "Ver Productos",
+        "Descubre nuestra colección exclusiva de zapatillas de estar en casa. Diseñadas para ofrecerte el máximo confort sin sacrificar el estilo. Perfectas para relajarte en casa.",
+      viewProducts: "Ver Zapatillas",
       specialOffers: "Ofertas Especiales",
       customers: "Clientes Felices",
       models: "Modelos",
       support: "Soporte",
     },
     features: {
-      title: "¿Por qué elegir CalzadoHogar?",
+      title: "¿Por qué elegir MisPapes?",
       subtitle:
-        "Nos especializamos en calzado de hogar que combina estilo, comodidad y durabilidad",
+        "Nos especializamos en zapatillas de estar en casa que combinan estilo, comodidad y durabilidad",
       comfort: {
         title: "Comodidad Extrema",
-        description: "Diseñados para brindarte el máximo confort en tu hogar",
+        description:
+          "Zapatillas diseñadas para brindarte el máximo confort en tu hogar",
       },
       quality: {
         title: "Calidad Garantizada",
-        description: "Materiales premium y duraderos para larga vida útil",
+        description:
+          "Materiales premium y duraderos para zapatillas de larga vida útil",
       },
       shipping: {
         title: "Envío Rápido",
-        description: "Recibe tus pedidos en 24-48 horas en toda España",
+        description: "Recibe tus zapatillas en 24-48 horas en toda España",
       },
       madeInSpain: {
         title: "Fabricado en España",
-        description: "Todos nuestros calzados son diseñados y elaborados en España",
+        description:
+          "Todas nuestras zapatillas son diseñadas y elaboradas en España",
       },
     },
     products: {
-      title: "Nuestros Productos",
-      subtitle: "Explora nuestra completa colección de calzado para hogar",
-      featured: "Productos Destacados",
+      title: "Nuestras Zapatillas",
+      subtitle:
+        "Explora nuestra completa colección de zapatillas para estar en casa",
+      featured: "Zapatillas Destacadas",
       viewAll: "Ver Todos los Productos",
       addToCart: "Añadir",
       featuredBadge: "Destacado",
@@ -175,7 +179,8 @@ export const translations: Translations = {
     cart: {
       title: "Tu Carrito",
       empty: "Tu carrito está vacío",
-      emptyMessage: "Parece que aún no has añadido ningún producto a tu carrito.",
+      emptyMessage:
+        "Parece que aún no has añadido ningún producto a tu carrito.",
       viewProducts: "Ver Productos",
       summary: "Resumen del Pedido",
       subtotal: "Subtotal",
@@ -188,7 +193,8 @@ export const translations: Translations = {
     },
     contact: {
       title: "Contacto",
-      subtitle: "Estamos aquí para ayudarte. Contáctanos para cualquier pregunta o sugerencia.",
+      subtitle:
+        "Estamos aquí para ayudarte. Contáctanos para cualquier pregunta o sugerencia.",
       sendMessage: "Envíanos un Mensaje",
       name: "Nombre",
       email: "Email",
@@ -205,7 +211,8 @@ export const translations: Translations = {
       closed: "Cerrado",
     },
     footer: {
-      description: "Tu tienda especializada en calzado cómodo y elegante para el hogar.",
+      description:
+        "Tu tienda especializada en zapatillas cómodas y elegantes para estar en casa.",
       quickLinks: "Enlaces Rápidos",
       categories: "Categorías",
       contact: "Contacto",
@@ -223,40 +230,42 @@ export const translations: Translations = {
       contact: "Contact",
     },
     hero: {
-      title: "Comfort and Style",
-      subtitle: "for your Home",
+      title: "House Slippers",
+      subtitle: "Comfort for your Home",
       description:
-        "Discover our exclusive collection of home footwear. Designed to offer you maximum comfort without sacrificing style.",
-      viewProducts: "View Products",
+        "Discover our exclusive collection of house slippers. Designed to offer you maximum comfort without sacrificing style. Perfect for relaxing at home.",
+      viewProducts: "View Slippers",
       specialOffers: "Special Offers",
       customers: "Happy Customers",
       models: "Models",
       support: "Support",
     },
     features: {
-      title: "Why Choose CalzadoHogar?",
-      subtitle: "We specialize in home footwear that combines style, comfort and durability",
+      title: "Why Choose MisPapes?",
+      subtitle:
+        "We specialize in home footwear that combines style, comfort and durability",
       comfort: {
         title: "Extreme Comfort",
-        description: "Designed to provide you with maximum comfort at home",
+        description:
+          "Slippers designed to provide you with maximum comfort at home",
       },
       quality: {
         title: "Guaranteed Quality",
-        description: "Premium and durable materials for long life",
+        description: "Premium and durable materials for long-lasting slippers",
       },
       shipping: {
         title: "Fast Shipping",
-        description: "Receive your orders in 24-48 hours throughout Spain",
+        description: "Receive your slippers in 24-48 hours throughout Spain",
       },
       madeInSpain: {
         title: "Made in Spain",
-        description: "All our footwear is designed and crafted in Spain",
+        description: "All our slippers are designed and crafted in Spain",
       },
     },
     products: {
-      title: "Our Products",
-      subtitle: "Explore our complete collection of home footwear",
-      featured: "Featured Products",
+      title: "Our Slippers",
+      subtitle: "Explore our complete collection of house slippers",
+      featured: "Featured Slippers",
       viewAll: "View All Products",
       addToCart: "Add",
       featuredBadge: "Featured",
@@ -287,7 +296,8 @@ export const translations: Translations = {
     },
     contact: {
       title: "Contact",
-      subtitle: "We are here to help. Contact us for any questions or suggestions.",
+      subtitle:
+        "We are here to help. Contact us for any questions or suggestions.",
       sendMessage: "Send us a Message",
       name: "Name",
       email: "Email",
@@ -304,7 +314,8 @@ export const translations: Translations = {
       closed: "Closed",
     },
     footer: {
-      description: "Your specialized store in comfortable and elegant home footwear.",
+      description:
+        "Your specialized store in comfortable and elegant house slippers.",
       quickLinks: "Quick Links",
       categories: "Categories",
       contact: "Contact",
