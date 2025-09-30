@@ -16,6 +16,7 @@ export interface Product {
   featured: boolean;
   gender: ProductGender;
   oferta: boolean;
+  discount?: number;
   model: 100 | 142 | 77 | 110;
 }
 
@@ -52,6 +53,7 @@ export const products: Product[] = [
     featured: true,
     gender: "mujer",
     oferta: true,
+    discount: 20,
     model: 100,
   },
   {
@@ -69,6 +71,7 @@ export const products: Product[] = [
     featured: false,
     gender: "unisex",
     oferta: true,
+    discount: 15,
     model: 77,
   },
   {
@@ -86,6 +89,7 @@ export const products: Product[] = [
     featured: true,
     gender: "hombre",
     oferta: true,
+    discount: 25,
     model: 110,
   },
   {
@@ -120,6 +124,7 @@ export const products: Product[] = [
     featured: true,
     gender: "mujer",
     oferta: true,
+    discount: 20,
     model: 100,
   },
   {
@@ -137,6 +142,7 @@ export const products: Product[] = [
     featured: true,
     gender: "mujer",
     oferta: true,
+    discount: 15,
     model: 77,
   },
   {
@@ -172,6 +178,7 @@ export const products: Product[] = [
     featured: true,
     gender: "hombre",
     oferta: true,
+    discount: 30,
     model: 142,
   },
   {
@@ -206,6 +213,7 @@ export const products: Product[] = [
     featured: true,
     gender: "hombre",
     oferta: true,
+    discount: 15,
     model: 77,
   },
   {
@@ -240,6 +248,7 @@ export const products: Product[] = [
     featured: false,
     gender: "hombre",
     oferta: true,
+    discount: 30,
     model: 142,
   },
   {
@@ -257,6 +266,7 @@ export const products: Product[] = [
     featured: false,
     gender: "hombre",
     oferta: true,
+    discount: 20,
     model: 100,
   },
   {
@@ -377,6 +387,7 @@ export const products: Product[] = [
     featured: false,
     gender: "mujer",
     oferta: true,
+    discount: 30,
     model: 142,
   },
   {

@@ -9,16 +9,23 @@ import { translations } from "../data/translations.ts";
 interface ProductCardProps {
   product: Product;
   gender?: string;
+  fromOffers?: boolean;
 }
 
-const ProductCard = ({ product, gender }: ProductCardProps) => {
+const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
   const { language } = useLanguage();
   const { addItem } = useCart();
   const t = translations[language];
 
   return (
     <Link
-      to={gender ? `/producto/${product.id}?gender=${gender}` : `/producto/${product.id}`}
+      to={
+        fromOffers
+          ? `/producto/${product.id}?from=offers`
+          : gender
+            ? `/producto/${product.id}?gender=${gender}`
+            : `/producto/${product.id}`
+      }
       className="card group flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 shadow-sm transition-shadow duration-300 hover:shadow-md"
     >
       <div className="relative overflow-hidden">
@@ -48,12 +55,34 @@ const ProductCard = ({ product, gender }: ProductCardProps) => {
       </div>
 
       <div className="flex flex-grow flex-col p-4">
-        <h3 className="mb-2 text-lg font-semibold text-gray-900">{product.name}</h3>
+        <h3 className="mb-2 text-lg font-semibold text-gray-900">
+          {product.name}
+        </h3>
 
-        <p className="mb-3 line-clamp-2 text-sm text-gray-700">{product.description}</p>
+        <p className="mb-3 line-clamp-2 text-sm text-gray-700">
+          {product.description}
+        </p>
 
         <div className="mt-auto flex items-center justify-between pt-2">
-          <span className="text-primary-600 text-2xl font-bold">€{product.price}</span>
+          <div className="flex items-center gap-2">
+            {product.oferta && product.discount ? (
+              <>
+                <span className="text-gray-400 text-lg font-medium line-through">
+                  €{product.price}
+                </span>
+                <span className="text-red-600 text-2xl font-bold">
+                  €{(product.price * (1 - product.discount / 100)).toFixed(2)}
+                </span>
+                <span className="bg-red-100 text-red-600 rounded px-2 py-1 text-xs font-semibold">
+                  -{product.discount}%
+                </span>
+              </>
+            ) : (
+              <span className="text-primary-600 text-2xl font-bold">
+                €{product.price}
+              </span>
+            )}
+          </div>
           <span className="btn-primary text-sm transition-colors duration-300 hover:text-blue-600">
             Ver más
           </span>

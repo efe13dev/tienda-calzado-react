@@ -28,7 +28,9 @@ const Cart = () => {
         <main className="flex flex-grow items-center justify-center py-8">
           <div className="text-center">
             <ShoppingBag className="mx-auto mb-6 h-24 w-24 text-gray-300" />
-            <h1 className="mb-4 text-2xl font-bold text-gray-900">{t.cart.empty}</h1>
+            <h1 className="mb-4 text-2xl font-bold text-gray-900">
+              {t.cart.empty}
+            </h1>
             <p className="mb-8 text-gray-600">{t.cart.emptyMessage}</p>
             <Link to="/productos" className="btn-primary">
               {t.cart.viewProducts}
@@ -54,7 +56,9 @@ const Cart = () => {
 
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">
-          <h1 className="mb-8 text-3xl font-bold text-gray-900">{t.cart.title}</h1>
+          <h1 className="mb-8 text-3xl font-bold text-gray-900">
+            {t.cart.title}
+          </h1>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
@@ -72,11 +76,30 @@ const Cart = () => {
                       />
 
                       <div className="flex-grow">
-                        <h3 className="font-semibold text-gray-900">{item.name}</h3>
+                        <h3 className="font-semibold text-gray-900">
+                          {item.name}
+                        </h3>
                         <p className="text-sm text-gray-600">
-                          Talla: {item.selectedSize} | Color: {item.selectedColor}
+                          Talla: {item.selectedSize} | Color:{" "}
+                          {item.selectedColor}
                         </p>
-                        <p className="text-primary-600 text-lg font-bold">€{item.price}</p>
+                        <div className="flex items-center gap-2">
+                          {item.originalPrice &&
+                          item.originalPrice > item.price ? (
+                            <>
+                              <span className="text-gray-400 text-sm font-medium line-through">
+                                €{item.originalPrice.toFixed(2)}
+                              </span>
+                              <span className="text-red-600 text-lg font-bold">
+                                €{item.price.toFixed(2)}
+                              </span>
+                            </>
+                          ) : (
+                            <span className="text-primary-600 text-lg font-bold">
+                              €{item.price.toFixed(2)}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       <div className="flex items-center gap-2">
@@ -93,7 +116,9 @@ const Cart = () => {
                         >
                           <Minus className="h-4 w-4 text-gray-600" />
                         </button>
-                        <span className="w-8 text-center text-gray-900">{item.quantity}</span>
+                        <span className="w-8 text-center text-gray-900">
+                          {item.quantity}
+                        </span>
                         <button
                           onClick={() =>
                             updateQuantity(
@@ -110,7 +135,13 @@ const Cart = () => {
                       </div>
 
                       <button
-                        onClick={() => removeItem(item.id, item.selectedSize, item.selectedColor)}
+                        onClick={() =>
+                          removeItem(
+                            item.id,
+                            item.selectedSize,
+                            item.selectedColor,
+                          )
+                        }
                         className="p-2 text-red-500 hover:text-red-700"
                       >
                         <Trash2 className="h-5 w-5" />
@@ -123,14 +154,18 @@ const Cart = () => {
 
             <div>
               <div className="sticky top-4 rounded-lg bg-white p-6 shadow-md">
-                <h2 className="mb-4 text-xl font-bold text-gray-900">{t.cart.summary}</h2>
+                <h2 className="mb-4 text-xl font-bold text-gray-900">
+                  {t.cart.summary}
+                </h2>
 
                 {state.totalPrice < 50 && 50 - state.totalPrice <= 15 && (
                   <div className="mb-4 rounded-lg bg-blue-50 p-3 text-center">
                     <p className="text-sm text-blue-800">
                       ¡Te faltan{" "}
-                      <span className="font-bold">€{(50 - state.totalPrice).toFixed(2)}</span> para
-                      tener envío gratis!
+                      <span className="font-bold">
+                        €{(50 - state.totalPrice).toFixed(2)}
+                      </span>{" "}
+                      para tener envío gratis!
                     </p>
                   </div>
                 )}
@@ -138,7 +173,8 @@ const Cart = () => {
                 {state.totalPrice >= 50 && (
                   <div className="mb-4 rounded-lg bg-green-50 p-3 text-center">
                     <p className="text-sm text-green-800">
-                      ¡Felicidades! <span className="font-bold">Tu envío será gratuito</span>
+                      ¡Felicidades!{" "}
+                      <span className="font-bold">Tu envío será gratuito</span>
                     </p>
                   </div>
                 )}
@@ -162,7 +198,8 @@ const Cart = () => {
                       <div className="group relative">
                         <HelpCircle className="h-4 w-4 cursor-help text-gray-400" />
                         <div className="absolute bottom-full left-1/2 z-10 mb-2 hidden w-56 -translate-x-1/2 rounded-lg bg-gray-800 p-3 text-xs text-white shadow-lg group-hover:block">
-                          Todos los productos tienen el IVA del 21% incluido en su precio
+                          Todos los productos tienen el IVA del 21% incluido en
+                          su precio
                           <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
                         </div>
                       </div>
@@ -172,13 +209,18 @@ const Cart = () => {
                     <div className="flex justify-between text-lg font-bold">
                       <span className="text-gray-900">{t.cart.total}</span>
                       <span className="text-primary-600">
-                        €{(state.totalPrice + (state.totalPrice > 50 ? 0 : 4.99)).toFixed(2)}
+                        €
+                        {(
+                          state.totalPrice + (state.totalPrice > 50 ? 0 : 4.99)
+                        ).toFixed(2)}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <button className="btn-primary mb-4 w-full">{t.cart.checkout}</button>
+                <button className="btn-primary mb-4 w-full">
+                  {t.cart.checkout}
+                </button>
 
                 <Link
                   to="/productos"

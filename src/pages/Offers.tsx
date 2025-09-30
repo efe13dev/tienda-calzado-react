@@ -28,7 +28,9 @@ const Offers = () => {
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">
           <div className="mb-8 text-center">
-            <h1 className="mb-4 text-4xl font-bold text-gray-900">{t.nav.offers}</h1>
+            <h1 className="mb-4 text-4xl font-bold text-gray-900">
+              {t.nav.offers}
+            </h1>
             <p className="mx-auto max-w-2xl text-lg text-gray-600">
               Descubre nuestros productos en oferta con precios especiales
             </p>
@@ -49,15 +51,19 @@ const Offers = () => {
                       OFERTA
                     </span>
                   </div>
-                  <ProductCard product={product} />
+                  <ProductCard product={product} fromOffers={true} />
                 </div>
               ))}
             </div>
           ) : (
             <div className="py-16 text-center">
               <div className="mb-4 text-6xl">🏷️</div>
-              <h2 className="mb-2 text-2xl font-bold text-gray-900">No hay ofertas disponibles</h2>
-              <p className="text-gray-600">Vuelve pronto para descubrir nuestras promociones.</p>
+              <h2 className="mb-2 text-2xl font-bold text-gray-900">
+                No hay ofertas disponibles
+              </h2>
+              <p className="text-gray-600">
+                Vuelve pronto para descubrir nuestras promociones.
+              </p>
             </div>
           )}
         </div>

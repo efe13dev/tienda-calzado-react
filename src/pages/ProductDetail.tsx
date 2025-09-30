@@ -31,9 +31,10 @@ const ProductDetail = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Obtener el género de los parámetros de búsqueda
+  // Obtener los parámetros de búsqueda
   const searchParams = new URLSearchParams(location.search);
   const gender = searchParams.get("gender");
+  const fromOffers = searchParams.get("from") === "offers";
 
   const product = products.find((p) => p.id === parseInt(id || "0"));
 
@@ -59,10 +60,18 @@ const ProductDetail = () => {
       return;
     }
 
+    const finalPrice =
+      product.oferta && product.discount
+        ? product.price * (1 - product.discount / 100)
+        : product.price;
+
     addItem({
       ...product,
       quantity,
       selectedSize,
+      price: Math.round(finalPrice * 100) / 100,
+      originalPrice:
+        product.oferta && product.discount ? product.price : undefined,
     });
   };
 
@@ -100,7 +109,13 @@ const ProductDetail = () => {
         <div className="container mx-auto px-4">
           <div className="mb-6">
             <Link
-              to={gender ? `/productos?gender=${gender}` : "/productos"}
+              to={
+                fromOffers
+                  ? "/ofertas"
+                  : gender
+                    ? `/productos?gender=${gender}`
+                    : "/productos"
+              }
               className="text-primary-600 inline-flex items-center transition-colors duration-300 hover:text-blue-600"
             >
               <svg
@@ -116,7 +131,7 @@ const ProductDetail = () => {
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              Volver a productos
+              {fromOffers ? "Volver a ofertas" : "Volver a productos"}
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -147,8 +162,27 @@ const ProductDetail = () => {
                 {product.description}
               </p>
 
-              <div className="text-primary-600 mb-6 text-3xl font-bold">
-                €{product.price}
+              <div className="mb-6">
+                {product.oferta && product.discount ? (
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-400 text-xl font-medium line-through">
+                      €{product.price}
+                    </span>
+                    <span className="text-red-600 text-3xl font-bold">
+                      €
+                      {(product.price * (1 - product.discount / 100)).toFixed(
+                        2,
+                      )}
+                    </span>
+                    <span className="bg-red-100 text-red-600 rounded px-3 py-1 text-sm font-semibold">
+                      -{product.discount}%
+                    </span>
+                  </div>
+                ) : (
+                  <div className="text-primary-600 text-3xl font-bold">
+                    €{product.price}
+                  </div>
+                )}
               </div>
 
               <div className="mb-6">
