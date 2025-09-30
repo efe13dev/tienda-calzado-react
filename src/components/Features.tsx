@@ -81,16 +81,6 @@ const Features = () => {
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
-            {/* Tercer conjunto extra para mayor suavidad */}
-            {features.map((feature, index) => (
-              <div key={`extra-${index}`} className="group w-80 flex-shrink-0 text-center">
-                <div className="bg-primary-100 group-hover:bg-primary-200 mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full transition-colors">
-                  <feature.icon className="text-primary-600 h-8 w-8" />
-                </div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </div>

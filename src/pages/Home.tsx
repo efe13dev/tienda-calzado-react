@@ -1,14 +1,13 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/ProductCard.tsx";
 import SEOHybrid from "../components/SEOHybrid";
-import { useLanguage } from "../contexts/useLanguage";
 import { useCart } from "../contexts/CartContext";
+import { useLanguage } from "../contexts/useLanguage";
 import { products } from "../data/products.ts";
 import { translations } from "../data/translations.ts";
 

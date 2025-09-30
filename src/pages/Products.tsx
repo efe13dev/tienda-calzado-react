@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/ProductCard.tsx";
 import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { useCart } from "../contexts/CartContext";
@@ -48,13 +48,7 @@ const Products = () => {
     if (selectedSeason === "todos") return productList;
 
     return productList.filter((product) => {
-      if (selectedSeason === "verano") {
-        return ["sandalias", "chanclas"].includes(product.category);
-      } else if (selectedSeason === "invierno") {
-        return ["botines", "pantuflas", "mocasines"].includes(product.category);
-      }
-
-      return true;
+      return product.season === selectedSeason;
     });
   };
 

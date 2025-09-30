@@ -1,11 +1,11 @@
-import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { HelpCircle, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SEOHybrid from "../components/SEOHybrid";
-import { useLanguage } from "../contexts/useLanguage";
 import { useCart } from "../contexts/CartContext";
+import { useLanguage } from "../contexts/useLanguage";
 import { translations } from "../data/translations.ts";
 
 const Cart = () => {
@@ -151,14 +151,22 @@ const Cart = () => {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-300">{t.cart.shipping}</span>
+                    <span className="text-gray-600">{t.cart.shipping}</span>
                     <span className="font-medium text-gray-900">
                       {state.totalPrice > 50 ? t.cart.free : "€4.99"}
                     </span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-300">{t.cart.tax}</span>
-                    <span className="font-medium text-gray-900 dark:text-white">{t.cart.tax}</span>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-600">{t.cart.tax}</span>
+                      <div className="group relative">
+                        <HelpCircle className="h-4 w-4 cursor-help text-gray-400" />
+                        <div className="absolute bottom-full left-1/2 z-10 mb-2 hidden w-56 -translate-x-1/2 rounded-lg bg-gray-800 p-3 text-xs text-white shadow-lg group-hover:block">
+                          Todos los productos tienen el IVA del 21% incluido en su precio
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-800"></div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="border-t pt-3">
                     <div className="flex justify-between text-lg font-bold">
@@ -174,7 +182,7 @@ const Cart = () => {
 
                 <Link
                   to="/productos"
-                  className="text-primary-600 hover:text-primary-700 block text-center"
+                  className="text-primary-600 block text-center transition-colors duration-300 hover:text-blue-700"
                 >
                   {t.cart.continueShopping}
                 </Link>

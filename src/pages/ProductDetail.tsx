@@ -1,15 +1,21 @@
-import { useState, useEffect } from "react";
-import { Heart, Share2, ShoppingCart, Star } from "lucide-react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Share2, ShoppingCart, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ImageGallery from "../components/ImageGallery";
 import SEOHybrid from "../components/SEOHybrid";
-import { useLanguage } from "../contexts/useLanguage";
 import { useCart } from "../contexts/CartContext";
-import { products } from "../data/products";
+import { useLanguage } from "../contexts/useLanguage";
+import { products, type ProductSize } from "../data/products";
 import { translations } from "../data/translations";
+
+const getSizesByGender = (gender: string): ProductSize[] => {
+  return gender === "hombre"
+    ? [40, 41, 42, 43, 44, 45]
+    : [36, 37, 38, 39, 40, 41];
+};
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,7 +41,9 @@ const ProductDetail = () => {
     return (
       <div className="flex min-h-screen items-center justify-center bg-white">
         <div className="text-center">
-          <h1 className="mb-4 text-2xl font-bold text-gray-900">{t.productDetail.notFound}</h1>
+          <h1 className="mb-4 text-2xl font-bold text-gray-900">
+            {t.productDetail.notFound}
+          </h1>
           <Link to="/productos" className="btn-primary">
             {t.productDetail.backToProducts}
           </Link>
@@ -58,16 +66,33 @@ const ProductDetail = () => {
     });
   };
 
+  const shareProduct = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: product.description,
+          url: window.location.href,
+        });
+      } catch (error) {
+        console.log("Error sharing:", error);
+      }
+    } else {
+      // Fallback para navegadores que no soportan Web Share API
+      navigator.clipboard.writeText(window.location.href);
+      alert("¡Enlace copiado al portapapeles!");
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <SEOHybrid
         title={`${product.name} | MisPapes Tienda de Calzado`}
         description={`Compra ${product.name} en MisPapes. ${product.description} Calidad garantizada y envío gratis.`}
-        keywords={`${product.name}, calzado ${product.gender}, ${product.category}, zapatos online, tienda calzado, MisPapes`}
+        keywords={`${product.name}, calzado ${product.gender}, ${product.season}, zapatos online, tienda calzado, MisPapes`}
         canonicalUrl={`https://mispapes.com/producto/${product.id}`}
         ogImage={product.images[0]}
         ogType="product"
-        product={product}
       />
       <Header cartCount={state.totalItems} />
 
@@ -78,7 +103,12 @@ const ProductDetail = () => {
               to={gender ? `/productos?gender=${gender}` : "/productos"}
               className="text-primary-600 inline-flex items-center transition-colors duration-300 hover:text-blue-600"
             >
-              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="mr-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -91,11 +121,16 @@ const ProductDetail = () => {
           </div>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <ImageGallery images={product.images} productName={product.name} />
+              <ImageGallery
+                images={product.images}
+                productName={product.name}
+              />
             </div>
 
             <div>
-              <h1 className="mb-4 text-3xl font-bold text-gray-900">{product.name}</h1>
+              <h1 className="mb-4 text-3xl font-bold text-gray-900">
+                {product.name}
+              </h1>
 
               <div className="mb-4 flex items-center">
                 <div className="flex text-yellow-400">
@@ -103,29 +138,47 @@ const ProductDetail = () => {
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
                 </div>
-                <span className="ml-2 text-gray-500">(24 {t.products.reviews})</span>
+                <span className="ml-2 text-gray-500">
+                  (24 {t.products.reviews})
+                </span>
               </div>
 
-              <p className="mb-6 leading-relaxed text-gray-600">{product.description}</p>
+              <p className="mb-6 leading-relaxed text-gray-600">
+                {product.description}
+              </p>
 
-              <div className="text-primary-600 mb-6 text-3xl font-bold">€{product.price}</div>
+              <div className="text-primary-600 mb-6 text-3xl font-bold">
+                €{product.price}
+              </div>
 
               <div className="mb-6">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">{t.productDetail.size}</h3>
+                <h3 className="mb-3 text-lg font-semibold text-gray-900">
+                  {t.productDetail.size}
+                </h3>
                 <div className="flex flex-wrap gap-2">
-                  {product.sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size.toString())}
-                      className={`rounded-lg border px-4 py-2 transition-colors ${
-                        selectedSize === size.toString()
-                          ? "border-blue-600 bg-blue-600 text-white"
-                          : "border-gray-300 text-gray-700 hover:border-blue-600"
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                  {getSizesByGender(product.gender).map((size) => {
+                    const isAvailable = product.sizes.includes(size);
+                    const isSelected = selectedSize === size.toString();
+
+                    return (
+                      <button
+                        key={size}
+                        onClick={() =>
+                          isAvailable && setSelectedSize(size.toString())
+                        }
+                        disabled={!isAvailable}
+                        className={`rounded-lg border px-4 py-2 transition-colors ${
+                          isSelected
+                            ? "border-blue-600 bg-blue-600 text-white"
+                            : isAvailable
+                              ? "border-gray-300 text-gray-700 hover:border-blue-600"
+                              : "cursor-not-allowed border-gray-200 bg-gray-50 text-gray-400"
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -140,7 +193,9 @@ const ProductDetail = () => {
                   >
                     -
                   </button>
-                  <span className="text-lg font-medium text-gray-900">{quantity}</span>
+                  <span className="text-lg font-medium text-gray-900">
+                    {quantity}
+                  </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100"
@@ -153,15 +208,21 @@ const ProductDetail = () => {
               <div className="mb-6 flex gap-4">
                 <button
                   onClick={addToCart}
-                  className="btn-primary flex flex-1 items-center justify-center"
+                  disabled={!selectedSize}
+                  className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-8 py-4 text-lg font-semibold text-white transition-all duration-300 ${
+                    !selectedSize
+                      ? "cursor-not-allowed bg-gray-400"
+                      : "bg-blue-600 hover:bg-blue-700 hover:shadow-xl active:scale-95"
+                  }`}
                 >
-                  <ShoppingCart className="mr-2 h-5 w-5" />
+                  <ShoppingCart className="h-6 w-6" />
                   {t.productDetail.addToCart}
                 </button>
-                <button className="rounded-lg border border-gray-300 p-3 hover:bg-gray-100">
-                  <Heart className="h-5 w-5 text-gray-600" />
-                </button>
-                <button className="rounded-lg border border-gray-300 p-3 hover:bg-gray-100">
+                <button
+                  onClick={shareProduct}
+                  className="rounded-lg border border-gray-300 p-3 transition-colors hover:bg-gray-100"
+                  title="Compartir producto"
+                >
                   <Share2 className="h-5 w-5 text-gray-600" />
                 </button>
               </div>
