@@ -22,6 +22,7 @@ export interface Product {
   featured: boolean;
   gender: ProductGender;
   oferta: boolean;
+  model: 100 | 142 | 77 | 110;
 }
 
 export const products: Product[] = [
@@ -37,10 +38,10 @@ export const products: Product[] = [
     ],
     category: "zapatillas",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: true,
     gender: "hombre",
     oferta: true,
+    model: 142,
   },
   {
     id: 2,
@@ -54,10 +55,10 @@ export const products: Product[] = [
     ],
     category: "pantuflas",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: true,
     gender: "mujer",
     oferta: true,
+    model: 100,
   },
   {
     id: 3,
@@ -71,10 +72,10 @@ export const products: Product[] = [
     ],
     category: "sandalias",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: false,
     gender: "unisex",
     oferta: false,
+    model: 77,
   },
   {
     id: 4,
@@ -88,10 +89,10 @@ export const products: Product[] = [
     ],
     category: "botines",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: true,
     gender: "hombre",
     oferta: true,
+    model: 110,
   },
   {
     id: 5,
@@ -108,6 +109,7 @@ export const products: Product[] = [
     featured: false,
     gender: "unisex",
     oferta: false,
+    model: 142,
   },
   {
     id: 6,
@@ -121,10 +123,10 @@ export const products: Product[] = [
     ],
     category: "mocasines",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: true,
     gender: "mujer",
     oferta: true,
+    model: 100,
   },
   {
     id: 7,
@@ -138,10 +140,10 @@ export const products: Product[] = [
     ],
     category: "zapatillas",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: true,
     gender: "mujer",
     oferta: true,
+    model: 77,
   },
   {
     id: 8,
@@ -158,6 +160,7 @@ export const products: Product[] = [
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 110,
   },
   // Productos adicionales para hombre (12 más)
   {
@@ -175,6 +178,7 @@ export const products: Product[] = [
     featured: true,
     gender: "hombre",
     oferta: true,
+    model: 142,
   },
   {
     id: 10,
@@ -188,10 +192,10 @@ export const products: Product[] = [
     ],
     category: "sandalias",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 100,
   },
   {
     id: 11,
@@ -205,10 +209,10 @@ export const products: Product[] = [
     ],
     category: "botines",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: true,
     gender: "hombre",
     oferta: true,
+    model: 77,
   },
   {
     id: 12,
@@ -222,10 +226,10 @@ export const products: Product[] = [
     ],
     category: "chanclas",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 110,
   },
   {
     id: 13,
@@ -239,10 +243,10 @@ export const products: Product[] = [
     ],
     category: "mocasines",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: true,
+    model: 142,
   },
   {
     id: 14,
@@ -256,10 +260,10 @@ export const products: Product[] = [
     ],
     category: "zapatillas",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: true,
+    model: 100,
   },
   {
     id: 15,
@@ -273,10 +277,10 @@ export const products: Product[] = [
     ],
     category: "pantuflas",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 77,
   },
   {
     id: 16,
@@ -290,10 +294,10 @@ export const products: Product[] = [
     ],
     category: "sandalias",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 110,
   },
   {
     id: 17,
@@ -307,10 +311,10 @@ export const products: Product[] = [
     ],
     category: "botines",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 142,
   },
   {
     id: 18,
@@ -324,10 +328,10 @@ export const products: Product[] = [
     ],
     category: "chanclas",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 100,
   },
   {
     id: 19,
@@ -341,10 +345,10 @@ export const products: Product[] = [
     ],
     category: "mocasines",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 77,
   },
   {
     id: 20,
@@ -358,10 +362,10 @@ export const products: Product[] = [
     ],
     category: "zapatillas",
     sizes: [40, 41, 42, 43, 44, 45],
-
     featured: false,
     gender: "hombre",
     oferta: false,
+    model: 110,
   },
   // Productos adicionales para mujer (11 más)
   {
@@ -376,10 +380,10 @@ export const products: Product[] = [
     ],
     category: "zapatillas",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: false,
     gender: "mujer",
     oferta: true,
+    model: 142,
   },
   {
     id: 22,
@@ -393,10 +397,10 @@ export const products: Product[] = [
     ],
     category: "sandalias",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 100,
   },
   {
     id: 23,
@@ -410,10 +414,10 @@ export const products: Product[] = [
     ],
     category: "botines",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 77,
   },
   {
     id: 24,
@@ -430,6 +434,7 @@ export const products: Product[] = [
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 110,
   },
   {
     id: 25,
@@ -446,6 +451,7 @@ export const products: Product[] = [
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 142,
   },
   {
     id: 26,
@@ -459,10 +465,10 @@ export const products: Product[] = [
     ],
     category: "zapatillas",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 100,
   },
   {
     id: 27,
@@ -479,6 +485,7 @@ export const products: Product[] = [
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 77,
   },
   {
     id: 28,
@@ -495,6 +502,7 @@ export const products: Product[] = [
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 110,
   },
   {
     id: 29,
@@ -511,6 +519,7 @@ export const products: Product[] = [
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 142,
   },
   {
     id: 30,
@@ -527,6 +536,7 @@ export const products: Product[] = [
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 100,
   },
   {
     id: 31,
@@ -540,9 +550,9 @@ export const products: Product[] = [
     ],
     category: "mocasines",
     sizes: [36, 37, 38, 39, 40, 41],
-
     featured: false,
     gender: "mujer",
     oferta: false,
+    model: 77,
   },
 ];
