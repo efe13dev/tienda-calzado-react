@@ -180,7 +180,7 @@ export const translations: Translations = {
       summary: "Resumen del Pedido",
       subtotal: "Subtotal",
       shipping: "Envío",
-      tax: "IVA",
+      tax: "IVA incluido",
       total: "Total",
       free: "Gratis",
       checkout: "Proceder al Pago",
@@ -213,6 +213,7 @@ export const translations: Translations = {
     },
     common: {
       cart: "Carrito",
+      freeShipping: "Envío gratis en pedidos +50€",
     },
   },
   en: {
@@ -279,7 +280,7 @@ export const translations: Translations = {
       summary: "Order Summary",
       subtotal: "Subtotal",
       shipping: "Shipping",
-      tax: "VAT",
+      tax: "VAT included",
       total: "Total",
       free: "Free",
       checkout: "Proceed to Checkout",
@@ -312,6 +313,7 @@ export const translations: Translations = {
     },
     common: {
       cart: "Cart",
+      freeShipping: "Free shipping on orders +50€",
     },
   },
 };

@@ -60,10 +60,10 @@ const Header = ({ cartCount }: HeaderProps) => {
 
           <div className="flex items-center space-x-4">
             <LanguageToggle />
-            <Link to="/carrito" className="relative">
+            <Link to="/carrito" className="relative inline-block">
               <ShoppingCart className="hover:text-primary-600 h-6 w-6 text-gray-700 transition-colors" />
               {cartCount > 0 && (
-                <span className="bg-primary-600 absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full text-xs text-white">
+                <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
                   {cartCount}
                 </span>
               )}

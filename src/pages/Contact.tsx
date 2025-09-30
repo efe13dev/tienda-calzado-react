@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SEOHybrid from "../components/SEOHybrid";
+import { useCart } from "../contexts/CartContext";
 import { useLanguage } from "../contexts/useLanguage";
 import { translations } from "../data/translations.ts";
 
@@ -21,6 +22,7 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const { state } = useCart();
   const { language } = useLanguage();
   const t = translations[language];
 
@@ -47,7 +49,7 @@ const Contact = () => {
         canonicalUrl="https://mispapes.com/contacto"
         ogImage="https://mispapes.com/og-contact.jpg"
       />
-      <Header cartCount={0} />
+      <Header cartCount={state.totalItems} />
 
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">

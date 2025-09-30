@@ -60,6 +60,11 @@ const Hero = () => {
               </Link>
             </div>
 
+            {/* Banner de envío gratis */}
+            <div className="from-primary-600 mt-8 rounded-lg bg-gradient-to-r to-blue-700 p-4 text-center shadow-lg">
+              <span className="text-lg font-bold text-white">{t.common.freeShipping}</span>
+            </div>
+
             <div className="mt-12 grid grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="text-primary-600 mb-2 text-3xl font-bold">

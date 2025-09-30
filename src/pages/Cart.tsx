@@ -84,8 +84,8 @@ const Cart = () => {
                           onClick={() =>
                             updateQuantity(
                               item.id,
-                              item.selectedSize || "",
-                              item.selectedColor || "",
+                              item.selectedSize,
+                              item.selectedColor,
                               item.quantity - 1,
                             )
                           }
@@ -98,8 +98,8 @@ const Cart = () => {
                           onClick={() =>
                             updateQuantity(
                               item.id,
-                              item.selectedSize || "",
-                              item.selectedColor || "",
+                              item.selectedSize,
+                              item.selectedColor,
                               item.quantity + 1,
                             )
                           }
@@ -110,9 +110,7 @@ const Cart = () => {
                       </div>
 
                       <button
-                        onClick={() =>
-                          removeFromCart(item.id, item.selectedSize || "", item.selectedColor || "")
-                        }
+                        onClick={() => removeItem(item.id, item.selectedSize, item.selectedColor)}
                         className="p-2 text-red-500 hover:text-red-700"
                       >
                         <Trash2 className="h-5 w-5" />
@@ -127,6 +125,24 @@ const Cart = () => {
               <div className="sticky top-4 rounded-lg bg-white p-6 shadow-md">
                 <h2 className="mb-4 text-xl font-bold text-gray-900">{t.cart.summary}</h2>
 
+                {state.totalPrice < 50 && 50 - state.totalPrice <= 15 && (
+                  <div className="mb-4 rounded-lg bg-blue-50 p-3 text-center">
+                    <p className="text-sm text-blue-800">
+                      ¡Te faltan{" "}
+                      <span className="font-bold">€{(50 - state.totalPrice).toFixed(2)}</span> para
+                      tener envío gratis!
+                    </p>
+                  </div>
+                )}
+
+                {state.totalPrice >= 50 && (
+                  <div className="mb-4 rounded-lg bg-green-50 p-3 text-center">
+                    <p className="text-sm text-green-800">
+                      ¡Felicidades! <span className="font-bold">Tu envío será gratuito</span>
+                    </p>
+                  </div>
+                )}
+
                 <div className="mb-6 space-y-3">
                   <div className="flex justify-between">
                     <span className="text-gray-600">{t.cart.subtotal}</span>
@@ -136,19 +152,19 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-300">{t.cart.shipping}</span>
-                    <span className="font-medium text-gray-900">{t.cart.free}</span>
+                    <span className="font-medium text-gray-900">
+                      {state.totalPrice > 50 ? t.cart.free : "€4.99"}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-300">{t.cart.tax}</span>
-                    <span className="font-medium text-gray-900 dark:text-white">
-                      €{(state.totalPrice * 0.21).toFixed(2)}
-                    </span>
+                    <span className="font-medium text-gray-900 dark:text-white">{t.cart.tax}</span>
                   </div>
                   <div className="border-t pt-3">
                     <div className="flex justify-between text-lg font-bold">
                       <span className="text-gray-900">{t.cart.total}</span>
                       <span className="text-primary-600">
-                        €{(state.totalPrice * 1.21).toFixed(2)}
+                        €{(state.totalPrice + (state.totalPrice > 50 ? 0 : 4.99)).toFixed(2)}
                       </span>
                     </div>
                   </div>

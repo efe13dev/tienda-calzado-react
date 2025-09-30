@@ -1,50 +1,18 @@
-import { useState } from "react";
-
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard";
 import SEOHybrid from "../components/SEOHybrid";
+import { useCart } from "../contexts/CartContext";
 import { useLanguage } from "../contexts/useLanguage";
 import { products } from "../data/products";
 import { translations } from "../data/translations";
 
-interface CartItem {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  featured?: boolean;
-  quantity: number;
-}
-
 const Offers = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const { state } = useCart();
   const { language } = useLanguage();
   const t = translations[language];
 
   const offerProducts = products.filter((product) => product.oferta);
-
-  const addToCart = (product: {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    image: string;
-    featured?: boolean;
-  }) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item,
-        );
-      }
-
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-  };
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -55,7 +23,7 @@ const Offers = () => {
         canonicalUrl="https://mispapes.com/ofertas"
         ogImage="https://mispapes.com/og-offers.jpg"
       />
-      <Header cartCount={cart.reduce((total, item) => total + item.quantity, 0)} />
+      <Header cartCount={state.totalItems} />
 
       <main className="flex-grow py-8">
         <div className="container mx-auto px-4">
@@ -81,7 +49,7 @@ const Offers = () => {
                       OFERTA
                     </span>
                   </div>
-                  <ProductCard product={product} onAddToCart={addToCart} />
+                  <ProductCard product={product} />
                 </div>
               ))}
             </div>

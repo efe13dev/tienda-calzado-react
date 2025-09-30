@@ -1,8 +1,8 @@
-import { ShoppingCart, Star } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import { useLanguage } from "../contexts/useLanguage";
 import { useCart } from "../contexts/CartContext";
+import { useLanguage } from "../contexts/useLanguage";
 import { Product } from "../data/products";
 import { translations } from "../data/translations.ts";
 
@@ -35,6 +35,7 @@ const ProductCard = ({ product, gender }: ProductCardProps) => {
         <button
           onClick={(e) => {
             e.preventDefault();
+            e.stopPropagation();
             addItem({
               ...product,
               quantity: 1,
