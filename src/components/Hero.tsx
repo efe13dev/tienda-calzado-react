@@ -42,14 +42,12 @@ const Hero = () => {
               </div>
             </div>
 
-            <p className="mb-8 text-lg leading-relaxed text-gray-600">
-              {t.hero.description}
-            </p>
+            <p className="mb-8 text-lg leading-relaxed text-gray-600">{t.hero.description}</p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
                 to="/productos"
-                className="btn-primary inline-flex items-center justify-center text-center group"
+                className="btn-primary group inline-flex items-center justify-center text-center"
               >
                 <span className="transition-colors duration-300 group-hover:text-blue-300">
                   {t.hero.viewProducts}
@@ -58,7 +56,7 @@ const Hero = () => {
               </Link>
               <Link
                 to="/ofertas"
-                className="btn-secondary inline-flex items-center justify-center text-center group"
+                className="btn-secondary group inline-flex items-center justify-center text-center"
               >
                 <span className="transition-colors duration-300 group-hover:text-yellow-300">
                   {t.hero.specialOffers}
@@ -67,10 +65,8 @@ const Hero = () => {
             </div>
 
             {/* Banner de envío gratis */}
-            <div className="mt-8 bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-4 text-center border-l-4 border-amber-400">
-              <span className="text-lg font-medium text-gray-800">
-                {t.common.freeShipping}
-              </span>
+            <div className="mt-8 border-l-4 border-amber-400 bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-4 text-center">
+              <span className="text-lg font-medium text-gray-800">{t.common.freeShipping}</span>
             </div>
 
             <div className="mt-12 grid grid-cols-3 gap-8">
@@ -97,9 +93,7 @@ const Hero = () => {
                 <div className="text-gray-600">{t.hero.models}</div>
               </div>
               <div className="text-center">
-                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">
-                  24/7
-                </div>
+                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">24/7</div>
                 <div className="text-gray-600">{t.hero.support}</div>
               </div>
             </div>

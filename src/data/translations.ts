@@ -95,6 +95,7 @@ export interface FooterTranslations {
 
 export interface CommonTranslations {
   cart: string;
+  freeShipping: string;
 }
 
 export interface LanguageTranslations {

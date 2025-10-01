@@ -43,12 +43,23 @@ const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            addItem({
-              ...product,
-              quantity: 1,
-            });
+            window.location.href = fromOffers
+              ? `/producto/${product.id}?from=offers`
+              : gender
+                ? `/producto/${product.id}?gender=${gender}`
+                : `/producto/${product.id}`;
           }}
-          className="text-primary-600 hover:bg-primary-600 absolute right-4 bottom-4 rounded-full bg-white p-2 opacity-0 shadow-lg transition-opacity duration-300 group-hover:opacity-100 hover:text-white"
+          className="absolute right-4 bottom-4 rounded-full bg-white p-2 opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100 hover:text-white"
+          style={{ color: "var(--primary-600)" }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "var(--primary-600)";
+            e.currentTarget.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "white";
+            e.currentTarget.style.color = "var(--primary-600)";
+          }}
+          title="Añadir al carrito"
         >
           <ShoppingCart className="h-5 w-5" />
         </button>
