@@ -49,16 +49,7 @@ const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
                 ? `/producto/${product.id}?gender=${gender}`
                 : `/producto/${product.id}`;
           }}
-          className="absolute right-4 bottom-4 rounded-full bg-white p-2 opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100 hover:text-white"
-          style={{ color: "var(--primary-600)" }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "var(--primary-600)";
-            e.currentTarget.style.color = "white";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "white";
-            e.currentTarget.style.color = "var(--primary-600)";
-          }}
+          className="text-primary-600 hover:bg-primary-600 absolute right-4 bottom-4 rounded-full bg-white p-2.5 opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:text-white"
           title="Añadir al carrito"
         >
           <ShoppingCart className="h-5 w-5" />
@@ -66,32 +57,26 @@ const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
       </div>
 
       <div className="flex flex-grow flex-col p-4">
-        <h3 className="mb-2 text-lg font-semibold text-gray-900">
-          {product.name}
-        </h3>
+        <h3 className="mb-2 text-lg font-semibold text-gray-900">{product.name}</h3>
 
-        <p className="mb-3 line-clamp-2 text-sm text-gray-700">
-          {product.description}
-        </p>
+        <p className="mb-3 line-clamp-2 text-sm text-gray-700">{product.description}</p>
 
         <div className="mt-auto flex items-center justify-between pt-2">
           <div className="flex items-center gap-2">
             {product.oferta && product.discount ? (
               <>
-                <span className="text-gray-400 text-lg font-medium line-through">
+                <span className="text-lg font-medium text-gray-400 line-through">
                   €{product.price}
                 </span>
-                <span className="text-red-600 text-2xl font-bold">
+                <span className="text-2xl font-bold text-red-600">
                   €{(product.price * (1 - product.discount / 100)).toFixed(2)}
                 </span>
-                <span className="bg-red-100 text-red-600 rounded px-2 py-1 text-xs font-semibold">
+                <span className="rounded bg-red-100 px-2 py-1 text-xs font-semibold text-red-600">
                   -{product.discount}%
                 </span>
               </>
             ) : (
-              <span className="text-primary-600 text-2xl font-bold">
-                €{product.price}
-              </span>
+              <span className="text-primary-600 text-2xl font-bold">€{product.price}</span>
             )}
           </div>
           <span className="btn-primary text-sm transition-colors duration-300 hover:text-blue-600">
