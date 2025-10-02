@@ -196,14 +196,6 @@ const Contact = () => {
                       <span>{t.contact.mondayFriday}</span>
                       <span>9:00 - 18:00</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span>{t.contact.saturday}</span>
-                      <span>10:00 - 14:00</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>{t.contact.sunday}</span>
-                      <span>{t.contact.closed}</span>
-                    </div>
                   </div>
                 </div>
               </div>

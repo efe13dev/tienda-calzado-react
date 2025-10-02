@@ -12,9 +12,7 @@ import { products, type ProductSize } from "../data/products";
 import { translations } from "../data/translations";
 
 const getSizesByGender = (gender: string): ProductSize[] => {
-  return gender === "hombre"
-    ? [40, 41, 42, 43, 44, 45]
-    : [36, 37, 38, 39, 40, 41];
+  return gender === "hombre" ? [40, 41, 42, 43, 44, 45] : [36, 37, 38, 39, 40, 41];
 };
 
 const ProductDetail = () => {
@@ -42,9 +40,7 @@ const ProductDetail = () => {
     return (
       <div className="flex min-h-screen items-center justify-center bg-white">
         <div className="text-center">
-          <h1 className="mb-4 text-2xl font-bold text-gray-900">
-            {t.productDetail.notFound}
-          </h1>
+          <h1 className="mb-4 text-2xl font-bold text-gray-900">{t.productDetail.notFound}</h1>
           <Link to="/productos" className="btn-primary">
             {t.productDetail.backToProducts}
           </Link>
@@ -70,8 +66,7 @@ const ProductDetail = () => {
       quantity,
       selectedSize,
       price: Math.round(finalPrice * 100) / 100,
-      originalPrice:
-        product.oferta && product.discount ? product.price : undefined,
+      originalPrice: product.oferta && product.discount ? product.price : undefined,
     });
   };
 
@@ -84,7 +79,7 @@ const ProductDetail = () => {
           url: window.location.href,
         });
       } catch (error) {
-        console.log("Error sharing:", error);
+        console.error("Error sharing:", error);
       }
     } else {
       // Fallback para navegadores que no soportan Web Share API
@@ -109,21 +104,10 @@ const ProductDetail = () => {
         <div className="container mx-auto px-4">
           <div className="mb-6">
             <Link
-              to={
-                fromOffers
-                  ? "/ofertas"
-                  : gender
-                    ? `/productos?gender=${gender}`
-                    : "/productos"
-              }
+              to={fromOffers ? "/ofertas" : gender ? `/productos?gender=${gender}` : "/productos"}
               className="text-primary-600 inline-flex items-center transition-colors duration-300 hover:text-blue-600"
             >
-              <svg
-                className="mr-2 h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -136,16 +120,11 @@ const ProductDetail = () => {
           </div>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <ImageGallery
-                images={product.images}
-                productName={product.name}
-              />
+              <ImageGallery images={product.images} productName={product.name} />
             </div>
 
             <div>
-              <h1 className="mb-4 text-3xl font-bold text-gray-900">
-                {product.name}
-              </h1>
+              <h1 className="mb-4 text-3xl font-bold text-gray-900">{product.name}</h1>
 
               <div className="mb-4 flex items-center">
                 <div className="flex text-yellow-400">
@@ -153,42 +132,31 @@ const ProductDetail = () => {
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
                 </div>
-                <span className="ml-2 text-gray-500">
-                  (24 {t.products.reviews})
-                </span>
+                <span className="ml-2 text-gray-500">(24 {t.products.reviews})</span>
               </div>
 
-              <p className="mb-6 leading-relaxed text-gray-600">
-                {product.description}
-              </p>
+              <p className="mb-6 leading-relaxed text-gray-600">{product.description}</p>
 
               <div className="mb-6">
                 {product.oferta && product.discount ? (
                   <div className="flex items-center gap-3">
-                    <span className="text-gray-400 text-xl font-medium line-through">
+                    <span className="text-xl font-medium text-gray-400 line-through">
                       €{product.price}
                     </span>
-                    <span className="text-red-600 text-3xl font-bold">
-                      €
-                      {(product.price * (1 - product.discount / 100)).toFixed(
-                        2,
-                      )}
+                    <span className="text-3xl font-bold text-red-600">
+                      €{(product.price * (1 - product.discount / 100)).toFixed(2)}
                     </span>
-                    <span className="bg-red-100 text-red-600 rounded px-3 py-1 text-sm font-semibold">
+                    <span className="rounded bg-red-100 px-3 py-1 text-sm font-semibold text-red-600">
                       -{product.discount}%
                     </span>
                   </div>
                 ) : (
-                  <div className="text-primary-600 text-3xl font-bold">
-                    €{product.price}
-                  </div>
+                  <div className="text-primary-600 text-3xl font-bold">€{product.price}</div>
                 )}
               </div>
 
               <div className="mb-6">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
-                  {t.productDetail.size}
-                </h3>
+                <h3 className="mb-3 text-lg font-semibold text-gray-900">{t.productDetail.size}</h3>
                 <div className="flex flex-wrap gap-2">
                   {getSizesByGender(product.gender).map((size) => {
                     const isAvailable = product.sizes.includes(size);
@@ -197,9 +165,7 @@ const ProductDetail = () => {
                     return (
                       <button
                         key={size}
-                        onClick={() =>
-                          isAvailable && setSelectedSize(size.toString())
-                        }
+                        onClick={() => isAvailable && setSelectedSize(size.toString())}
                         disabled={!isAvailable}
                         className={`rounded-lg border px-4 py-2 transition-colors ${
                           isSelected
@@ -227,9 +193,7 @@ const ProductDetail = () => {
                   >
                     -
                   </button>
-                  <span className="text-lg font-medium text-gray-900">
-                    {quantity}
-                  </span>
+                  <span className="text-lg font-medium text-gray-900">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100"
@@ -266,11 +230,9 @@ const ProductDetail = () => {
                   {t.productDetail.characteristics}
                 </h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li>• Material premium de alta calidad</li>
-                  <li>• Suela antideslizante</li>
-                  <li>• Diseño ergonómico</li>
-                  <li>• Fácil de limpiar</li>
-                  <li>• 100% satisfacción garantizada</li>
+                  {product.characteristics.map((characteristic, index) => (
+                    <li key={index}>• {characteristic}</li>
+                  ))}
                 </ul>
               </div>
             </div>

@@ -18,6 +18,7 @@ export interface Product {
   oferta: boolean;
   discount?: number;
   model: 100 | 142 | 77 | 110;
+  characteristics: string[];
 }
 
 export const products: Product[] = [
@@ -37,6 +38,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 142,
+    characteristics: [
+      "Material premium de alta calidad",
+      "Suela antideslizante",
+      "Diseño ergonómico",
+      "Fácil de limpiar",
+      "100% satisfacción garantizada",
+    ],
   },
   {
     id: 2,
@@ -55,6 +63,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 20,
     model: 100,
+    characteristics: [
+      "Almohadilla extra suave",
+      "Forro térmico interior",
+      "Suela antiderrapante",
+      "Lavable a máquina",
+      "Tecnología anti-olor",
+    ],
   },
   {
     id: 3,
@@ -73,6 +88,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 15,
     model: 77,
+    characteristics: [
+      "Material transpirable",
+      "Diseño ligero",
+      "Suela flexible",
+      "Secado rápido",
+      "Ajuste cómodo",
+    ],
   },
   {
     id: 4,
@@ -91,6 +113,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 25,
     model: 110,
+    characteristics: [
+      "Forro térmico interior",
+      "Protección de tobillo",
+      "Material resistente",
+      "Suela antideslizante",
+      "Aislamiento térmico",
+    ],
   },
   {
     id: 5,
@@ -108,6 +137,13 @@ export const products: Product[] = [
     gender: "unisex",
     oferta: false,
     model: 142,
+    characteristics: [
+      "Material resistente al agua",
+      "Suela antiderrapante",
+      "Diseño ligero",
+      "Fácil limpieza",
+      "Uso versátil",
+    ],
   },
   {
     id: 6,
@@ -126,6 +162,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 20,
     model: 100,
+    characteristics: [
+      "Material flexible",
+      "Suela de goma",
+      "Diseño clásico",
+      "Cómodo para uso diario",
+      "Durabilidad garantizada",
+    ],
   },
   {
     id: 7,
@@ -144,6 +187,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 15,
     model: 77,
+    characteristics: [
+      "Material transpirable",
+      "Suela flexible",
+      "Diseño deportivo",
+      "Amortiguación ligera",
+      "Versatilidad",
+    ],
   },
   {
     id: 8,
@@ -161,6 +211,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 110,
+    characteristics: [
+      "Almohadilla suave",
+      "Material acolchado",
+      "Diseño ergonómico",
+      "Fácil de limpiar",
+      "Máximo confort",
+    ],
   },
   // Productos adicionales para hombre (12 más)
   {
@@ -180,6 +237,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 30,
     model: 142,
+    characteristics: [
+      "Material transpirable",
+      "Suela flexible",
+      "Diseño deportivo",
+      "Amortiguación ligera",
+      "Versatilidad",
+    ],
   },
   {
     id: 10,
@@ -197,6 +261,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 100,
+    characteristics: [
+      "Material transpirable",
+      "Diseño ligero",
+      "Secado rápido",
+      "Suela flexible",
+      "Cómodo para verano",
+    ],
   },
   {
     id: 11,
@@ -215,6 +286,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 15,
     model: 77,
+    characteristics: [
+      "Forro térmico interior",
+      "Protección de tobillo",
+      "Material resistente",
+      "Suela antideslizante",
+      "Aislamiento térmico",
+    ],
   },
   {
     id: 12,
@@ -232,6 +310,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 110,
+    characteristics: [
+      "Material resistente al agua",
+      "Suela antiderrapante",
+      "Diseño ligero",
+      "Fácil limpieza",
+      "Uso versátil",
+    ],
   },
   {
     id: 13,
@@ -250,6 +335,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 30,
     model: 142,
+    characteristics: [
+      "Material flexible",
+      "Suela de goma",
+      "Diseño clásico",
+      "Cómodo para uso diario",
+      "Durabilidad garantizada",
+    ],
   },
   {
     id: 14,
@@ -268,6 +360,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 20,
     model: 100,
+    characteristics: [
+      "Material transpirable",
+      "Suela flexible",
+      "Diseño deportivo",
+      "Amortiguación ligera",
+      "Versatilidad",
+    ],
   },
   {
     id: 15,
@@ -285,6 +384,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 77,
+    characteristics: [
+      "Almohadilla suave",
+      "Material acolchado",
+      "Diseño ergonómico",
+      "Fácil de limpiar",
+      "Máximo confort",
+    ],
   },
   {
     id: 16,
@@ -302,6 +408,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 110,
+    characteristics: [
+      "Material transpirable",
+      "Diseño ligero",
+      "Secado rápido",
+      "Suela flexible",
+      "Cómodo para verano",
+    ],
   },
   {
     id: 17,
@@ -319,6 +432,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 142,
+    characteristics: [
+      "Forro térmico interior",
+      "Protección de tobillo",
+      "Material resistente",
+      "Suela antideslizante",
+      "Aislamiento térmico",
+    ],
   },
   {
     id: 18,
@@ -336,6 +456,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 100,
+    characteristics: [
+      "Material resistente al agua",
+      "Suela antiderrapante",
+      "Diseño ligero",
+      "Fácil limpieza",
+      "Uso versátil",
+    ],
   },
   {
     id: 19,
@@ -353,6 +480,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 77,
+    characteristics: [
+      "Material flexible",
+      "Suela de goma",
+      "Diseño clásico",
+      "Cómodo para uso diario",
+      "Durabilidad garantizada",
+    ],
   },
   {
     id: 20,
@@ -370,6 +504,13 @@ export const products: Product[] = [
     gender: "hombre",
     oferta: false,
     model: 110,
+    characteristics: [
+      "Material transpirable",
+      "Suela flexible",
+      "Diseño deportivo",
+      "Amortiguación ligera",
+      "Versatilidad",
+    ],
   },
   // Productos adicionales para mujer (11 más)
   {
@@ -389,6 +530,13 @@ export const products: Product[] = [
     oferta: true,
     discount: 30,
     model: 142,
+    characteristics: [
+      "Material transpirable",
+      "Suela flexible",
+      "Diseño deportivo",
+      "Amortiguación ligera",
+      "Versatilidad",
+    ],
   },
   {
     id: 22,
@@ -406,6 +554,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 100,
+    characteristics: [
+      "Material transpirable",
+      "Diseño ligero",
+      "Secado rápido",
+      "Suela flexible",
+      "Cómodo para verano",
+    ],
   },
   {
     id: 23,
@@ -423,6 +578,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 77,
+    characteristics: [
+      "Forro térmico interior",
+      "Protección de tobillo",
+      "Material resistente",
+      "Suela antideslizante",
+      "Aislamiento térmico",
+    ],
   },
   {
     id: 24,
@@ -440,6 +602,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 110,
+    characteristics: [
+      "Material resistente al agua",
+      "Suela antiderrapante",
+      "Diseño ligero",
+      "Fácil limpieza",
+      "Uso versátil",
+    ],
   },
   {
     id: 25,
@@ -457,6 +626,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 142,
+    characteristics: [
+      "Material flexible",
+      "Suela de goma",
+      "Diseño clásico",
+      "Cómodo para uso diario",
+      "Durabilidad garantizada",
+    ],
   },
   {
     id: 26,
@@ -474,6 +650,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 100,
+    characteristics: [
+      "Material transpirable",
+      "Suela flexible",
+      "Diseño deportivo",
+      "Amortiguación ligera",
+      "Versatilidad",
+    ],
   },
   {
     id: 27,
@@ -491,6 +674,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 77,
+    characteristics: [
+      "Almohadilla suave",
+      "Material acolchado",
+      "Diseño ergonómico",
+      "Fácil de limpiar",
+      "Máximo confort",
+    ],
   },
   {
     id: 28,
@@ -508,6 +698,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 110,
+    characteristics: [
+      "Material transpirable",
+      "Diseño ligero",
+      "Secado rápido",
+      "Suela flexible",
+      "Cómodo para verano",
+    ],
   },
   {
     id: 29,
@@ -525,6 +722,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 142,
+    characteristics: [
+      "Forro térmico interior",
+      "Protección de tobillo",
+      "Material resistente",
+      "Suela antideslizante",
+      "Aislamiento térmico",
+    ],
   },
   {
     id: 30,
@@ -542,6 +746,13 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 100,
+    characteristics: [
+      "Material resistente al agua",
+      "Suela antiderrapante",
+      "Diseño ligero",
+      "Fácil limpieza",
+      "Uso versátil",
+    ],
   },
   {
     id: 31,
@@ -559,5 +770,12 @@ export const products: Product[] = [
     gender: "mujer",
     oferta: false,
     model: 77,
+    characteristics: [
+      "Material flexible",
+      "Suela de goma",
+      "Diseño clásico",
+      "Cómodo para uso diario",
+      "Durabilidad garantizada",
+    ],
   },
 ];
