@@ -15,7 +15,7 @@ const Hero = () => {
   const [startCounters, setStartCounters] = useState<boolean>(false);
 
   return (
-    <section className="from-primary-50 to-secondary-50 relative bg-gradient-to-r py-20">
+    <section className="relative bg-white py-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>
@@ -42,7 +42,9 @@ const Hero = () => {
               </div>
             </div>
 
-            <p className="mb-8 text-lg leading-relaxed text-gray-600">{t.hero.description}</p>
+            <p className="mb-8 text-lg leading-relaxed text-gray-600">
+              {t.hero.description}
+            </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
@@ -65,8 +67,10 @@ const Hero = () => {
             </div>
 
             {/* Banner de envío gratis */}
-            <div className="mt-8 border-l-4 border-amber-400 bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50 p-4 text-center">
-              <span className="text-lg font-medium text-gray-800">{t.common.freeShipping}</span>
+            <div className="mt-8 border-l-4 border-amber-400 bg-amber-50 p-4 text-center">
+              <span className="text-lg font-medium text-gray-800">
+                {t.common.freeShipping}
+              </span>
             </div>
 
             <div className="mt-12 grid grid-cols-3 gap-8">
@@ -93,7 +97,9 @@ const Hero = () => {
                 <div className="text-gray-600">{t.hero.models}</div>
               </div>
               <div className="text-center">
-                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">24/7</div>
+                <div className="text-primary-600 mb-2 animate-pulse text-3xl font-bold">
+                  24/7
+                </div>
                 <div className="text-gray-600">{t.hero.support}</div>
               </div>
             </div>

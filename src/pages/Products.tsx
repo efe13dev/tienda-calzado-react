@@ -1,4 +1,4 @@
-import { Mars, Snowflake, Sun, Venus } from "lucide-react";
+import { Loader2, Mars, Snowflake, Sun, Venus } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import ProductCard from "../components/ProductCard.tsx";
 import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { useCart } from "../contexts/CartContext";
-import { products } from "../data/products";
+import { getProducts } from "../services/productService";
 import { translations } from "../data/translations";
 
 type GenderSelection = null | "hombre" | "mujer";
@@ -17,15 +17,15 @@ type Season = "todos" | "verano" | "invierno";
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedGender, setSelectedGender] = useState<GenderSelection>(null);
-  const { state } = useCart();
-
-  const getCurrentSeason = (): Season => {
+  const [selectedSeason, setSelectedSeason] = useState<Season>(() => {
     const currentMonth = new Date().getMonth() + 1;
 
     return currentMonth >= 3 && currentMonth <= 9 ? "verano" : "invierno";
-  };
-
-  const [selectedSeason, setSelectedSeason] = useState<Season>(getCurrentSeason());
+  });
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { state } = useCart();
   const { language } = useLanguage();
   const t = translations[language];
 
@@ -38,21 +38,39 @@ const Products = () => {
     }
   }, [searchParams]);
 
+  // Efecto para cargar productos cuando cambia el género o temporada
+  useEffect(() => {
+    async function fetchProducts() {
+      if (!selectedGender) return;
+
+      try {
+        setLoading(true);
+        setError(null);
+
+        const filters: any = { gender: selectedGender };
+
+        if (selectedSeason !== "todos") {
+          filters.season = selectedSeason;
+        }
+
+        const { data, error } = await getProducts(filters);
+
+        if (error) {
+          setError(error);
+        } else {
+          setProducts(data || []);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Error desconocido");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, [selectedGender, selectedSeason]);
+
   const seasons: Season[] = ["todos", "verano", "invierno"];
-
-  const filteredProducts = selectedGender
-    ? products.filter((product) => product.gender === selectedGender)
-    : [];
-
-  const filterProductsBySeason = (productList: typeof products) => {
-    if (selectedSeason === "todos") return productList;
-
-    return productList.filter((product) => {
-      return product.season === selectedSeason;
-    });
-  };
-
-  const finalProducts = filterProductsBySeason(filteredProducts);
 
   const renderProducts = () => {
     if (!selectedGender) return null;
@@ -60,26 +78,39 @@ const Products = () => {
     return (
       <section className="mb-16 rounded-lg bg-gray-50 p-6">
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
-            {selectedGender === "hombre" ? (
-              <>
-                <Mars className="h-6 w-6 text-blue-600" /> Para Hombre
-              </>
-            ) : (
-              <>
-                <Venus className="h-6 w-6 text-pink-500" /> Para Mujer
-              </>
-            )}
-          </h2>
           <button
             onClick={() => {
               setSelectedGender(null);
               setSearchParams({});
             }}
-            className="btn-primary flex items-center transition-colors duration-300 hover:text-blue-600"
+            className="text-primary-600 inline-flex items-center transition-colors duration-300 hover:text-blue-600"
           >
-            ← Volver
+            <svg
+              className="mr-2 h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Volver
           </button>
+          <h2 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
+            {selectedGender === "hombre" ? (
+              <>
+                Para Hombre <Mars className="h-6 w-6 text-blue-600" />
+              </>
+            ) : (
+              <>
+                Para Mujer <Venus className="h-6 w-6 text-pink-500" />
+              </>
+            )}
+          </h2>
         </div>
 
         <div className="mb-8 flex flex-wrap justify-center gap-4">
@@ -114,9 +145,21 @@ const Products = () => {
           })}
         </div>
 
-        {finalProducts.length > 0 ? (
+        {loading ? (
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+            <span className="ml-2 text-lg">Cargando productos...</span>
+          </div>
+        ) : error ? (
+          <div className="rounded-lg border border-red-200 bg-red-50 p-4">
+            <h3 className="font-semibold text-red-800">
+              Error al cargar productos
+            </h3>
+            <p className="text-red-600">{error}</p>
+          </div>
+        ) : products.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {finalProducts.map((product) => (
+            {products.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -126,7 +169,9 @@ const Products = () => {
           </div>
         ) : (
           <div className="py-8 text-center">
-            <p className="text-gray-500">No se encontraron productos en esta categoría.</p>
+            <p className="text-gray-500">
+              No se encontraron productos en esta categoría.
+            </p>
           </div>
         )}
       </section>
@@ -149,8 +194,12 @@ const Products = () => {
           {!selectedGender ? (
             <>
               <div className="mb-8 text-center">
-                <h1 className="mb-4 text-4xl font-bold text-gray-900">{t.products.title}</h1>
-                <p className="mx-auto max-w-2xl text-lg text-gray-600">{t.products.subtitle}</p>
+                <h1 className="mb-4 text-4xl font-bold text-gray-900">
+                  {t.products.title}
+                </h1>
+                <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                  {t.products.subtitle}
+                </p>
               </div>
 
               <div className="flex flex-col items-center gap-8 md:flex-row md:justify-center">
@@ -159,7 +208,9 @@ const Products = () => {
                   className="group flex w-full max-w-md transform flex-col items-center justify-center rounded-2xl bg-blue-50 p-8 transition-all hover:scale-105 hover:bg-blue-100 md:w-96"
                 >
                   <Mars className="mb-4 h-16 w-16 text-blue-600 transition-transform group-hover:scale-105" />
-                  <h2 className="mb-2 text-2xl font-bold text-gray-900">Para Hombre</h2>
+                  <h2 className="mb-2 text-2xl font-bold text-gray-900">
+                    Para Hombre
+                  </h2>
                   <p className="text-center text-gray-600">
                     Descubre nuestra colección de calzado para hombre
                   </p>
@@ -173,7 +224,9 @@ const Products = () => {
                   className="group flex w-full max-w-md transform flex-col items-center justify-center rounded-2xl bg-pink-50 p-8 transition-all hover:scale-105 hover:bg-pink-100 md:w-96"
                 >
                   <Venus className="mb-4 h-16 w-16 text-pink-500 transition-transform group-hover:scale-105" />
-                  <h2 className="mb-2 text-2xl font-bold text-gray-900">Para Mujer</h2>
+                  <h2 className="mb-2 text-2xl font-bold text-gray-900">
+                    Para Mujer
+                  </h2>
                   <p className="text-center text-gray-600">
                     Explora nuestra exclusiva colección para mujer
                   </p>

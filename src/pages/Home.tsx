@@ -1,3 +1,4 @@
+import { Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import Features from "../components/Features";
@@ -8,15 +9,14 @@ import ProductCard from "../components/ProductCard.tsx";
 import SEOHybrid from "../components/SEOHybrid";
 import { useCart } from "../contexts/CartContext";
 import { useLanguage } from "../contexts/useLanguage";
-import { products } from "../data/products.ts";
+import { useFeaturedProducts } from "../hooks/useProducts";
 import { translations } from "../data/translations.ts";
 
 const Home = () => {
   const { language } = useLanguage();
   const { state } = useCart();
+  const { products: featuredProducts, loading, error } = useFeaturedProducts();
   const t = translations[language];
-
-  const featuredProducts = products.filter((product) => product.featured);
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -43,11 +43,23 @@ const Home = () => {
               <p className="mx-auto max-w-2xl text-lg text-gray-600">{t.products.subtitle}</p>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                <span className="ml-2 text-lg">Cargando productos destacados...</span>
+              </div>
+            ) : error ? (
+              <div className="rounded-lg border border-red-200 bg-red-50 p-4">
+                <h3 className="font-semibold text-red-800">Error al cargar productos</h3>
+                <p className="text-red-600">{error}</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {featuredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
 
             <div className="mt-12 text-center">
               <Link

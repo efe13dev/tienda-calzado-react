@@ -21,6 +21,8 @@ export interface Product {
   characteristics: string[];
 }
 
+// Los datos de productos ahora se cargan desde Supabase
+// Este array se mantiene como referencia pero ya no se usa en la aplicación
 export const products: Product[] = [
   {
     id: 1,
