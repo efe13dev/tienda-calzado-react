@@ -1,7 +1,6 @@
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import { useCart } from "../contexts/CartContext";
 import { useLanguage } from "../contexts/useLanguage";
 import { Product } from "../data/products";
 import { translations } from "../data/translations.ts";
@@ -14,7 +13,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
   const { language } = useLanguage();
-  const { addItem } = useCart();
+
   const t = translations[language];
 
   return (
