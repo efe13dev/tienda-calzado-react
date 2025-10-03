@@ -140,13 +140,11 @@ export const translations: Translations = {
         "Nos especializamos en calzado de estar en casa que combina estilo, comodidad y durabilidad",
       comfort: {
         title: "Comodidad Extrema",
-        description:
-          "Calzado diseñado para brindarte el máximo confort en tu hogar",
+        description: "Calzado diseñado para brindarte el máximo confort en tu hogar",
       },
       quality: {
         title: "Calidad Garantizada",
-        description:
-          "Diseño con materiales de primera que garantizan larga vida útil.",
+        description: "Diseño con materiales de primera que garantizan larga vida útil.",
       },
       shipping: {
         title: "Envío Rápido",
@@ -154,14 +152,12 @@ export const translations: Translations = {
       },
       madeInSpain: {
         title: "Fabricado en España 100%",
-        description:
-          "Todas nuestras zapatillas son diseñadas y elaboradas en España",
+        description: "Todas nuestras zapatillas son diseñadas y elaboradas en España",
       },
     },
     products: {
       title: "Nuestras Zapatillas",
-      subtitle:
-        "Explora nuestra completa colección de zapatillas para estar en casa",
+      subtitle: "Explora nuestra completa colección de zapatillas para estar en casa",
       featured: "Zapatillas Destacadas",
       viewAll: "Ver Todos los Productos",
       addToCart: "Añadir",
@@ -180,8 +176,7 @@ export const translations: Translations = {
     cart: {
       title: "Tu Carrito",
       empty: "Tu carrito está vacío",
-      emptyMessage:
-        "Parece que aún no has añadido ningún producto a tu carrito.",
+      emptyMessage: "Parece que aún no has añadido ningún producto a tu carrito.",
       viewProducts: "Ver Productos",
       summary: "Resumen del Pedido",
       subtotal: "Subtotal",
@@ -194,8 +189,7 @@ export const translations: Translations = {
     },
     contact: {
       title: "Contacto",
-      subtitle:
-        "Estamos aquí para ayudarte. Contáctanos para cualquier pregunta o sugerencia.",
+      subtitle: "Estamos aquí para ayudarte. Contáctanos para cualquier pregunta o sugerencia.",
       sendMessage: "Envíanos un Mensaje",
       name: "Nombre",
       email: "Email",
@@ -212,8 +206,7 @@ export const translations: Translations = {
       closed: "Cerrado",
     },
     footer: {
-      description:
-        "Tu tienda especializada en zapatillas cómodas y elegantes para estar en casa.",
+      description: "Tu tienda especializada en zapatillas cómodas y elegantes para estar en casa.",
       quickLinks: "Enlaces Rápidos",
       categories: "Categorías",
       contact: "Contacto",
@@ -244,22 +237,18 @@ export const translations: Translations = {
     },
     features: {
       title: "Why Choose MisPapes?",
-      subtitle:
-        "We specialize in home footwear that combines style, comfort and durability",
+      subtitle: "We specialize in home footwear that combines style, comfort and durability",
       comfort: {
         title: "Extreme Comfort",
-        description:
-          "Slippers designed to provide you with maximum comfort at home",
+        description: "Slippers designed to provide you with maximum comfort at home",
       },
       quality: {
         title: "Guaranteed Quality",
-        description:
-          "Designed with first-class materials that guarantee long life.",
+        description: "Designed with first-class materials that guarantee long life.",
       },
       shipping: {
         title: "Fast Shipping",
-        description:
-          "Receive your order in 48-72 hours throughout the peninsula",
+        description: "Receive your order in 48-72 hours throughout the peninsula",
       },
       madeInSpain: {
         title: "Made in Spain 100%",
@@ -300,8 +289,7 @@ export const translations: Translations = {
     },
     contact: {
       title: "Contact",
-      subtitle:
-        "We are here to help. Contact us for any questions or suggestions.",
+      subtitle: "We are here to help. Contact us for any questions or suggestions.",
       sendMessage: "Send us a Message",
       name: "Name",
       email: "Email",
@@ -318,8 +306,7 @@ export const translations: Translations = {
       closed: "Closed",
     },
     footer: {
-      description:
-        "Your specialized store in comfortable and elegant house slippers.",
+      description: "Your specialized store in comfortable and elegant house slippers.",
       quickLinks: "Quick Links",
       categories: "Categories",
       contact: "Contact",

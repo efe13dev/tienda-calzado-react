@@ -69,8 +69,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
       const totalItems = newItems.reduce((sum, item) => sum + item.quantity, 0);
       const totalPrice = newItems.reduce(
-        (sum, item) =>
-          sum + (Math.round(item.price * 100) / 100) * item.quantity,
+        (sum, item) => sum + (Math.round(item.price * 100) / 100) * item.quantity,
         0,
       );
 
@@ -89,8 +88,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
       const totalItems = newItems.reduce((sum, item) => sum + item.quantity, 0);
       const totalPrice = newItems.reduce(
-        (sum, item) =>
-          sum + (Math.round(item.price * 100) / 100) * item.quantity,
+        (sum, item) => sum + (Math.round(item.price * 100) / 100) * item.quantity,
         0,
       );
 
@@ -115,8 +113,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 
       const totalItems = newItems.reduce((sum, item) => sum + item.quantity, 0);
       const totalPrice = newItems.reduce(
-        (sum, item) =>
-          sum + (Math.round(item.price * 100) / 100) * item.quantity,
+        (sum, item) => sum + (Math.round(item.price * 100) / 100) * item.quantity,
         0,
       );
 
@@ -127,14 +124,8 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return initialState;
 
     case "LOAD_CART": {
-      const totalItems = action.payload.reduce(
-        (sum, item) => sum + item.quantity,
-        0,
-      );
-      const totalPrice = action.payload.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0,
-      );
+      const totalItems = action.payload.reduce((sum, item) => sum + item.quantity, 0);
+      const totalPrice = action.payload.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
       return { items: action.payload, totalItems, totalPrice };
     }
@@ -147,11 +138,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
 interface CartContextType {
   state: CartState;
   addItem: (item: Omit<CartItem, "quantity"> & { quantity?: number }) => void;
-  removeItem: (
-    id: number,
-    selectedSize?: string,
-    selectedColor?: string,
-  ) => void;
+  removeItem: (id: number, selectedSize?: string, selectedColor?: string) => void;
   updateQuantity: (
     id: number,
     selectedSize?: string,
@@ -163,9 +150,7 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   // Load cart from localStorage on mount
@@ -195,20 +180,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [state.items]);
 
-  const addItem = (
-    item: Omit<CartItem, "quantity"> & { quantity?: number },
-  ) => {
+  const addItem = (item: Omit<CartItem, "quantity"> & { quantity?: number }) => {
     dispatch({
       type: "ADD_ITEM",
       payload: { ...item, quantity: item.quantity || 1 },
     });
   };
 
-  const removeItem = (
-    id: number,
-    selectedSize?: string,
-    selectedColor?: string,
-  ) => {
+  const removeItem = (id: number, selectedSize?: string, selectedColor?: string) => {
     dispatch({
       type: "REMOVE_ITEM",
       payload: { id, selectedSize, selectedColor },
@@ -232,9 +211,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <CartContext.Provider
-      value={{ state, addItem, removeItem, updateQuantity, clearCart }}
-    >
+    <CartContext.Provider value={{ state, addItem, removeItem, updateQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );
