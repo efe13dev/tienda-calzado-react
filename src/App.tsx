@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Offers from "./pages/Offers";
 import ProductDetail from "./pages/ProductDetail";
 import Products from "./pages/Products";
+import SummerProducts from "./pages/SummerProducts";
+import WinterProducts from "./pages/WinterProducts";
 
 function App(): React.JSX.Element {
   return (
@@ -20,6 +22,8 @@ function App(): React.JSX.Element {
           <Route path="/carrito" element={<Cart />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/ofertas" element={<Offers />} />
+          <Route path="/invierno" element={<WinterProducts />} />
+          <Route path="/verano" element={<SummerProducts />} />
         </Routes>
       </Router>
     </CartProvider>

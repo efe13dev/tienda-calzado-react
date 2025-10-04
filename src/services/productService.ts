@@ -8,11 +8,15 @@ type SupabaseProduct = Database["public"]["Tables"]["products"]["Row"];
 /**
  * Convierte un producto de Supabase al tipo Product local
  */
-function mapSupabaseProduct(supabaseProduct: SupabaseProduct): Product {
+function mapSupabaseProduct(supabaseProduct: SupabaseProduct, language: string = "es"): Product {
   return {
     id: supabaseProduct.id,
-    name: supabaseProduct.name,
-    description: supabaseProduct.description,
+    name:
+      language === "en" && supabaseProduct.name_en ? supabaseProduct.name_en : supabaseProduct.name,
+    description:
+      language === "en" && supabaseProduct.description_en
+        ? supabaseProduct.description_en
+        : supabaseProduct.description,
     price: supabaseProduct.price,
     images: supabaseProduct.images,
     season: supabaseProduct.season,
@@ -22,7 +26,10 @@ function mapSupabaseProduct(supabaseProduct: SupabaseProduct): Product {
     oferta: supabaseProduct.oferta,
     discount: supabaseProduct.discount ?? undefined,
     model: supabaseProduct.model,
-    characteristics: supabaseProduct.characteristics,
+    characteristics:
+      language === "en" && supabaseProduct.characteristics_en
+        ? supabaseProduct.characteristics_en
+        : supabaseProduct.characteristics,
   };
 }
 
@@ -38,7 +45,7 @@ export interface ProductFilters {
 /**
  * Obtiene todos los productos con filtros opcionales
  */
-export async function getProducts(filters?: ProductFilters) {
+export async function getProducts(filters?: ProductFilters, language: string = "es") {
   try {
     let query = supabase.from("products").select("*");
 
@@ -72,7 +79,10 @@ export async function getProducts(filters?: ProductFilters) {
 
     if (error) throw error;
 
-    return { data: (data || []).map(mapSupabaseProduct), error: null };
+    return {
+      data: (data || []).map((product) => mapSupabaseProduct(product, language)),
+      error: null,
+    };
   } catch (error) {
     console.error("Error fetching products:", error);
 
@@ -86,13 +96,16 @@ export async function getProducts(filters?: ProductFilters) {
 /**
  * Obtiene un producto por su ID
  */
-export async function getProductById(id: number) {
+export async function getProductById(id: number, language: string = "es") {
   try {
     const { data, error } = await supabase.from("products").select("*").eq("id", id).single();
 
     if (error) throw error;
 
-    return { data: data ? mapSupabaseProduct(data) : null, error: null };
+    return {
+      data: data ? mapSupabaseProduct(data, language) : null,
+      error: null,
+    };
   } catch (error) {
     console.error("Error fetching product:", error);
 
@@ -107,33 +120,38 @@ export async function getProductById(id: number) {
  * Obtiene productos destacados
  */
 
-export async function getFeaturedProducts() {
-  return getProducts({ featured: true });
+export async function getFeaturedProducts(language: string = "es") {
+  return getProducts({ featured: true }, language);
 }
 
 /**
  * Obtiene productos en oferta
  */
 
-export async function getProductsOnSale() {
-  return getProducts({ oferta: true });
+export async function getProductsOnSale(language: string = "es") {
+  return getProducts({ oferta: true }, language);
 }
 
 /**
  * Busca productos por nombre o descripción
  */
 
-export async function searchProducts(searchTerm: string) {
+export async function searchProducts(searchTerm: string, language: string = "es") {
   try {
     const { data, error } = await supabase
       .from("products")
       .select("*")
-      .or(`name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%`)
+      .or(
+        `name.ilike.%${searchTerm}%,description.ilike.%${searchTerm}%,name_en.ilike.%${searchTerm}%,description_en.ilike.%${searchTerm}%`,
+      )
       .order("id", { ascending: true });
 
     if (error) throw error;
 
-    return { data: (data || []).map(mapSupabaseProduct), error: null };
+    return {
+      data: (data || []).map((product) => mapSupabaseProduct(product, language)),
+      error: null,
+    };
   } catch (error) {
     console.error("Error searching products:", error);
 

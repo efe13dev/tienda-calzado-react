@@ -60,34 +60,34 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <Link
-                  to="/productos/zapatillas"
+                  to="/invierno"
                   className="hover:text-primary-400 text-gray-400 transition-colors"
                 >
-                  Zapatillas
+                  {t.footer.winter}
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/productos/pantuflas"
+                  to="/verano"
                   className="hover:text-primary-400 text-gray-400 transition-colors"
                 >
-                  Pantuflas
+                  {t.footer.summer}
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/productos/sandalias"
+                  to="/productos?gender=hombre"
                   className="hover:text-primary-400 text-gray-400 transition-colors"
                 >
-                  Sandalias
+                  {t.footer.forHim}
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/productos/botines"
+                  to="/productos?gender=mujer"
                   className="hover:text-primary-400 text-gray-400 transition-colors"
                 >
-                  Botines
+                  {t.footer.forHer}
                 </Link>
               </li>
             </ul>
@@ -96,10 +96,10 @@ const Footer = () => {
           <div>
             <h4 className="mb-4 text-lg font-semibold">{t.footer.contact}</h4>
             <ul className="space-y-2 text-gray-400">
-              <li>Teléfono: +34 900 123 456</li>
-              <li>Email: info@misPapes.com</li>
-              <li>Dirección: Calle Principal 123</li>
-              <li>Ciudad, País 28001</li>
+              <li>{t.footer.phone}: +34 900 123 456</li>
+              <li>{t.footer.email}: info@misPapes.com</li>
+              <li>{t.footer.address}: Calle Principal 123</li>
+              <li>{t.footer.location}</li>
             </ul>
           </div>
         </div>

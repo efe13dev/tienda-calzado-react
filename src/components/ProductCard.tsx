@@ -9,9 +9,10 @@ interface ProductCardProps {
   product: Product;
   gender?: string;
   fromOffers?: boolean;
+  from?: string;
 }
 
-const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
+const ProductCard = ({ product, gender, fromOffers, from }: ProductCardProps) => {
   const { language } = useLanguage();
 
   const t = translations[language];
@@ -21,9 +22,11 @@ const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
       to={
         fromOffers
           ? `/producto/${product.id}?from=offers`
-          : gender
-            ? `/producto/${product.id}?gender=${gender}`
-            : `/producto/${product.id}`
+          : from
+            ? `/producto/${product.id}?from=${from}`
+            : gender
+              ? `/producto/${product.id}?gender=${gender}`
+              : `/producto/${product.id}`
       }
       className="card group flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 shadow-sm transition-shadow duration-300 hover:shadow-md"
     >
@@ -44,9 +47,11 @@ const ProductCard = ({ product, gender, fromOffers }: ProductCardProps) => {
             e.stopPropagation();
             window.location.href = fromOffers
               ? `/producto/${product.id}?from=offers`
-              : gender
-                ? `/producto/${product.id}?gender=${gender}`
-                : `/producto/${product.id}`;
+              : from
+                ? `/producto/${product.id}?from=${from}`
+                : gender
+                  ? `/producto/${product.id}?gender=${gender}`
+                  : `/producto/${product.id}`;
           }}
           className="text-primary-600 hover:bg-primary-600 absolute right-4 bottom-4 rounded-full bg-white p-2.5 opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100 hover:scale-110 hover:text-white"
           title="Añadir al carrito"

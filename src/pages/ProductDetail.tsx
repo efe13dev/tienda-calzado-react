@@ -13,9 +13,7 @@ import { type ProductSize } from "../data/products";
 import { translations } from "../data/translations";
 
 const getSizesByGender = (gender: string): ProductSize[] => {
-  return gender === "hombre"
-    ? [40, 41, 42, 43, 44, 45]
-    : [36, 37, 38, 39, 40, 41];
+  return gender === "hombre" ? [40, 41, 42, 43, 44, 45] : [36, 37, 38, 39, 40, 41];
 };
 
 const ProductDetail = () => {
@@ -37,6 +35,7 @@ const ProductDetail = () => {
   const searchParams = new URLSearchParams(location.search);
   const gender = searchParams.get("gender");
   const fromOffers = searchParams.get("from") === "offers";
+  const fromSeason = searchParams.get("from");
 
   if (loading) {
     return (
@@ -81,8 +80,7 @@ const ProductDetail = () => {
       quantity,
       selectedSize,
       price: Math.round(finalPrice * 100) / 100,
-      originalPrice:
-        product.oferta && product.discount ? product.price : undefined,
+      originalPrice: product.oferta && product.discount ? product.price : undefined,
     });
   };
 
@@ -123,18 +121,17 @@ const ProductDetail = () => {
               to={
                 fromOffers
                   ? "/ofertas"
-                  : gender
-                    ? `/productos?gender=${gender}`
-                    : "/productos"
+                  : fromSeason === "invierno"
+                    ? "/invierno"
+                    : fromSeason === "verano"
+                      ? "/verano"
+                      : gender
+                        ? `/productos?gender=${gender}`
+                        : "/productos"
               }
               className="text-primary-600 inline-flex items-center transition-colors duration-300 hover:text-blue-600"
             >
-              <svg
-                className="mr-2 h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -142,21 +139,22 @@ const ProductDetail = () => {
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              {fromOffers ? "Volver a ofertas" : "Volver a productos"}
+              {fromOffers
+                ? t.nav.offers
+                : fromSeason === "invierno"
+                  ? t.footer.winter
+                  : fromSeason === "verano"
+                    ? t.footer.summer
+                    : t.products.back}
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
-              <ImageGallery
-                images={product.images}
-                productName={product.name}
-              />
+              <ImageGallery images={product.images} productName={product.name} />
             </div>
 
             <div>
-              <h1 className="mb-4 text-3xl font-bold text-gray-900">
-                {product.name}
-              </h1>
+              <h1 className="mb-4 text-3xl font-bold text-gray-900">{product.name}</h1>
 
               <div className="mb-4 flex items-center">
                 <div className="flex text-yellow-400">
@@ -164,14 +162,10 @@ const ProductDetail = () => {
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
                 </div>
-                <span className="ml-2 text-gray-500">
-                  (24 {t.products.reviews})
-                </span>
+                <span className="ml-2 text-gray-500">(24 {t.products.reviews})</span>
               </div>
 
-              <p className="mb-6 leading-relaxed text-gray-600">
-                {product.description}
-              </p>
+              <p className="mb-6 leading-relaxed text-gray-600">{product.description}</p>
 
               <div className="mb-6">
                 {product.oferta && product.discount ? (
@@ -180,26 +174,19 @@ const ProductDetail = () => {
                       €{product.price}
                     </span>
                     <span className="text-3xl font-bold text-red-600">
-                      €
-                      {(product.price * (1 - product.discount / 100)).toFixed(
-                        2,
-                      )}
+                      €{(product.price * (1 - product.discount / 100)).toFixed(2)}
                     </span>
                     <span className="rounded bg-red-100 px-3 py-1 text-sm font-semibold text-red-600">
                       -{product.discount}%
                     </span>
                   </div>
                 ) : (
-                  <div className="text-primary-600 text-3xl font-bold">
-                    €{product.price}
-                  </div>
+                  <div className="text-primary-600 text-3xl font-bold">€{product.price}</div>
                 )}
               </div>
 
               <div className="mb-6">
-                <h3 className="mb-3 text-lg font-semibold text-gray-900">
-                  {t.productDetail.size}
-                </h3>
+                <h3 className="mb-3 text-lg font-semibold text-gray-900">{t.productDetail.size}</h3>
                 <div className="flex flex-wrap gap-2">
                   {getSizesByGender(product.gender).map((size) => {
                     const isAvailable = product.sizes.includes(size);
@@ -208,9 +195,7 @@ const ProductDetail = () => {
                     return (
                       <button
                         key={size}
-                        onClick={() =>
-                          isAvailable && setSelectedSize(size.toString())
-                        }
+                        onClick={() => isAvailable && setSelectedSize(size.toString())}
                         disabled={!isAvailable}
                         className={`rounded-lg border px-4 py-2 transition-colors ${
                           isSelected
@@ -238,9 +223,7 @@ const ProductDetail = () => {
                   >
                     -
                   </button>
-                  <span className="text-lg font-medium text-gray-900">
-                    {quantity}
-                  </span>
+                  <span className="text-lg font-medium text-gray-900">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 hover:bg-gray-100"
@@ -269,7 +252,7 @@ const ProductDetail = () => {
                       <div className="rounded bg-gray-800 px-3 py-2 text-sm text-white shadow-lg">
                         Por favor selecciona una talla
                       </div>
-                      <div className="h-0 w-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-800"></div>
+                      <div className="h-0 w-0 border-t-4 border-r-4 border-l-4 border-t-gray-800 border-r-transparent border-l-transparent"></div>
                     </div>
                   )}
                 </div>

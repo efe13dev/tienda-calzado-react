@@ -39,6 +39,26 @@ export interface ProductsTranslations {
   addToCart: string;
   featuredBadge: string;
   reviews: string;
+  forMen: string;
+  forWomen: string;
+  menCollection: string;
+  womenCollection: string;
+  viewProducts: string;
+  back: string;
+  allSeasons: string;
+  summer: string;
+  winter: string;
+  noProductsFound: string;
+}
+
+export interface OffersTranslations {
+  title: string;
+  subtitle: string;
+  loadingError: string;
+  productsOnOffer: string;
+  offerBadge: string;
+  noOffersAvailable: string;
+  checkBackSoon: string;
 }
 
 export interface ProductDetailTranslations {
@@ -91,6 +111,14 @@ export interface FooterTranslations {
   categories: string;
   contact: string;
   copyright: string;
+  winter: string;
+  summer: string;
+  forHim: string;
+  forHer: string;
+  phone: string;
+  email: string;
+  address: string;
+  location: string;
 }
 
 export interface CommonTranslations {
@@ -103,6 +131,7 @@ export interface LanguageTranslations {
   hero: HeroTranslations;
   features: FeaturesTranslations;
   products: ProductsTranslations;
+  offers: OffersTranslations;
   productDetail: ProductDetailTranslations;
   cart: CartTranslations;
   contact: ContactTranslations;
@@ -158,11 +187,30 @@ export const translations: Translations = {
     products: {
       title: "Nuestras Zapatillas",
       subtitle: "Explora nuestra completa colección de zapatillas para estar en casa",
-      featured: "Zapatillas Destacadas",
+      featured: "Selección Destacada",
       viewAll: "Ver Todos los Productos",
       addToCart: "Añadir",
       featuredBadge: "Destacado",
       reviews: "reseñas",
+      forMen: "Para Hombre",
+      forWomen: "Para Mujer",
+      menCollection: "Descubre nuestra colección de calzado para hombre",
+      womenCollection: "Explora nuestra exclusiva colección para mujer",
+      viewProducts: "Ver productos →",
+      back: "Volver",
+      allSeasons: "todas las estaciones",
+      summer: "verano",
+      winter: "invierno",
+      noProductsFound: "No se encontraron productos en esta categoría.",
+    },
+    offers: {
+      title: "Ofertas y Promociones",
+      subtitle: "Descubre nuestros productos en oferta con precios especiales",
+      loadingError: "Error al cargar ofertas",
+      productsOnOffer: "productos en oferta",
+      offerBadge: "OFERTA",
+      noOffersAvailable: "No hay ofertas disponibles",
+      checkBackSoon: "Vuelve pronto para descubrir nuestras promociones.",
     },
     productDetail: {
       addToCart: "Añadir al Carrito",
@@ -211,6 +259,14 @@ export const translations: Translations = {
       categories: "Categorías",
       contact: "Contacto",
       copyright: "Todos los derechos reservados.",
+      winter: "Invierno",
+      summer: "Verano",
+      forHim: "Para él",
+      forHer: "Para ella",
+      phone: "Teléfono",
+      email: "Email",
+      address: "Dirección",
+      location: "Ciudad, País 28001",
     },
     common: {
       cart: "Carrito",
@@ -258,11 +314,30 @@ export const translations: Translations = {
     products: {
       title: "Our Slippers",
       subtitle: "Explore our complete collection of house slippers",
-      featured: "Featured Slippers",
+      featured: "Featured Selection",
       viewAll: "View All Products",
       addToCart: "Add",
       featuredBadge: "Featured",
       reviews: "reviews",
+      forMen: "For Men",
+      forWomen: "For Women",
+      menCollection: "Discover our collection of footwear for men",
+      womenCollection: "Explore our exclusive collection for women",
+      viewProducts: "View products →",
+      back: "Back",
+      allSeasons: "all seasons",
+      summer: "summer",
+      winter: "winter",
+      noProductsFound: "No products found in this category.",
+    },
+    offers: {
+      title: "Offers and Promotions",
+      subtitle: "Discover our products on sale with special prices",
+      loadingError: "Error loading offers",
+      productsOnOffer: "products on offer",
+      offerBadge: "SALE",
+      noOffersAvailable: "No offers available",
+      checkBackSoon: "Check back soon to discover our promotions.",
     },
     productDetail: {
       addToCart: "Add to Cart",
@@ -311,6 +386,14 @@ export const translations: Translations = {
       categories: "Categories",
       contact: "Contact",
       copyright: "All rights reserved.",
+      winter: "Winter",
+      summer: "Summer",
+      forHim: "For Him",
+      forHer: "For Her",
+      phone: "Phone",
+      email: "Email",
+      address: "Address",
+      location: "City, Country 28001",
     },
     common: {
       cart: "Cart",

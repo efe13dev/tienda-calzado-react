@@ -1,4 +1,3 @@
-import { Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import Features from "../components/Features";
@@ -6,6 +5,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard.tsx";
+import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import SEOHybrid from "../components/SEOHybrid";
 import { useCart } from "../contexts/CartContext";
 import { useLanguage } from "../contexts/useLanguage";
@@ -44,9 +44,10 @@ const Home = () => {
             </div>
 
             {loading ? (
-              <div className="flex items-center justify-center py-12">
-                <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                <span className="ml-2 text-lg">Cargando productos destacados...</span>
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <ProductCardSkeleton key={index} />
+                ))}
               </div>
             ) : error ? (
               <div className="rounded-lg border border-red-200 bg-red-50 p-4">

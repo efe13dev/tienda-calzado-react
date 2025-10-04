@@ -8,6 +8,8 @@ export interface Database {
           id: number;
           name: string;
           description: string;
+          name_en: string;
+          description_en: string;
           price: number;
           images: string[];
           season: "invierno" | "verano";
@@ -18,6 +20,7 @@ export interface Database {
           discount: number | null;
           model: 100 | 142 | 77 | 110;
           characteristics: string[];
+          characteristics_en: string[];
           created_at: string;
           updated_at: string;
         };
@@ -25,6 +28,8 @@ export interface Database {
           id?: number;
           name: string;
           description: string;
+          name_en: string;
+          description_en: string;
           price: number;
           images: string[];
           season: "invierno" | "verano";
@@ -35,6 +40,7 @@ export interface Database {
           discount?: number | null;
           model: 100 | 142 | 77 | 110;
           characteristics: string[];
+          characteristics_en: string[];
           created_at?: string;
           updated_at?: string;
         };
@@ -42,6 +48,8 @@ export interface Database {
           id?: number;
           name?: string;
           description?: string;
+          name_en?: string;
+          description_en?: string;
           price?: number;
           images?: string[];
           season?: "invierno" | "verano";
@@ -52,6 +60,7 @@ export interface Database {
           discount?: number | null;
           model?: 100 | 142 | 77 | 110;
           characteristics?: string[];
+          characteristics_en?: string[];
           created_at?: string;
           updated_at?: string;
         };

@@ -1,10 +1,11 @@
-import { Loader2, Mars, Snowflake, Sun, Venus } from "lucide-react";
+import { Mars, Snowflake, Sun, Venus } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard.tsx";
+import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import SEOHybrid from "../components/SEOHybrid";
 import { useLanguage } from "../contexts/useLanguage";
 import { useCart } from "../contexts/CartContext";
@@ -38,6 +39,11 @@ const Products = () => {
     }
   }, [searchParams]);
 
+  // Scroll to top when component mounts or when gender changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [selectedGender]);
+
   // Efecto para cargar productos cuando cambia el género o temporada
   useEffect(() => {
     async function fetchProducts() {
@@ -53,7 +59,7 @@ const Products = () => {
           filters.season = selectedSeason;
         }
 
-        const { data, error } = await getProducts(filters);
+        const { data, error } = await getProducts(filters, language);
 
         if (error) {
           setError(error);
@@ -68,7 +74,7 @@ const Products = () => {
     }
 
     fetchProducts();
-  }, [selectedGender, selectedSeason]);
+  }, [selectedGender, selectedSeason, language]);
 
   const seasons: Season[] = ["todos", "verano", "invierno"];
 
@@ -85,12 +91,7 @@ const Products = () => {
             }}
             className="text-primary-600 inline-flex items-center transition-colors duration-300 hover:text-blue-600"
           >
-            <svg
-              className="mr-2 h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg className="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -98,16 +99,16 @@ const Products = () => {
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-            Volver
+            {t.products.back}
           </button>
           <h2 className="flex items-center gap-3 text-2xl font-bold text-gray-900">
             {selectedGender === "hombre" ? (
               <>
-                Para Hombre <Mars className="h-6 w-6 text-blue-600" />
+                {t.products.forMen} <Mars className="h-6 w-6 text-blue-600" />
               </>
             ) : (
               <>
-                Para Mujer <Venus className="h-6 w-6 text-pink-500" />
+                {t.products.forWomen} <Venus className="h-6 w-6 text-pink-500" />
               </>
             )}
           </h2>
@@ -120,12 +121,12 @@ const Products = () => {
 
             if (season === "verano") {
               icon = <Sun className="mr-2 h-4 w-4" />;
-              label = "verano";
+              label = t.products.summer;
             } else if (season === "invierno") {
               icon = <Snowflake className="mr-2 h-4 w-4" />;
-              label = "invierno";
+              label = t.products.winter;
             } else {
-              label = "todas las estaciones";
+              label = t.products.allSeasons;
             }
 
             return (
@@ -146,15 +147,14 @@ const Products = () => {
         </div>
 
         {loading ? (
-          <div className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-            <span className="ml-2 text-lg">Cargando productos...</span>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <ProductCardSkeleton key={index} />
+            ))}
           </div>
         ) : error ? (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4">
-            <h3 className="font-semibold text-red-800">
-              Error al cargar productos
-            </h3>
+            <h3 className="font-semibold text-red-800">Error al cargar productos</h3>
             <p className="text-red-600">{error}</p>
           </div>
         ) : products.length > 0 ? (
@@ -169,9 +169,7 @@ const Products = () => {
           </div>
         ) : (
           <div className="py-8 text-center">
-            <p className="text-gray-500">
-              No se encontraron productos en esta categoría.
-            </p>
+            <p className="text-gray-500">{t.products.noProductsFound}</p>
           </div>
         )}
       </section>
@@ -194,12 +192,8 @@ const Products = () => {
           {!selectedGender ? (
             <>
               <div className="mb-8 text-center">
-                <h1 className="mb-4 text-4xl font-bold text-gray-900">
-                  {t.products.title}
-                </h1>
-                <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                  {t.products.subtitle}
-                </p>
+                <h1 className="mb-4 text-4xl font-bold text-gray-900">{t.products.title}</h1>
+                <p className="mx-auto max-w-2xl text-lg text-gray-600">{t.products.subtitle}</p>
               </div>
 
               <div className="flex flex-col items-center gap-8 md:flex-row md:justify-center">
@@ -208,14 +202,10 @@ const Products = () => {
                   className="group flex w-full max-w-md transform flex-col items-center justify-center rounded-2xl bg-blue-50 p-8 transition-all hover:scale-105 hover:bg-blue-100 md:w-96"
                 >
                   <Mars className="mb-4 h-16 w-16 text-blue-600 transition-transform group-hover:scale-105" />
-                  <h2 className="mb-2 text-2xl font-bold text-gray-900">
-                    Para Hombre
-                  </h2>
-                  <p className="text-center text-gray-600">
-                    Descubre nuestra colección de calzado para hombre
-                  </p>
+                  <h2 className="mb-2 text-2xl font-bold text-gray-900">{t.products.forMen}</h2>
+                  <p className="text-center text-gray-600">{t.products.menCollection}</p>
                   <div className="mt-4 text-blue-600 opacity-0 transition-opacity group-hover:opacity-100">
-                    Ver productos →
+                    {t.products.viewProducts}
                   </div>
                 </button>
 
@@ -224,14 +214,10 @@ const Products = () => {
                   className="group flex w-full max-w-md transform flex-col items-center justify-center rounded-2xl bg-pink-50 p-8 transition-all hover:scale-105 hover:bg-pink-100 md:w-96"
                 >
                   <Venus className="mb-4 h-16 w-16 text-pink-500 transition-transform group-hover:scale-105" />
-                  <h2 className="mb-2 text-2xl font-bold text-gray-900">
-                    Para Mujer
-                  </h2>
-                  <p className="text-center text-gray-600">
-                    Explora nuestra exclusiva colección para mujer
-                  </p>
+                  <h2 className="mb-2 text-2xl font-bold text-gray-900">{t.products.forWomen}</h2>
+                  <p className="text-center text-gray-600">{t.products.womenCollection}</p>
                   <div className="mt-4 text-pink-600 opacity-0 transition-opacity group-hover:opacity-100">
-                    Ver productos →
+                    {t.products.viewProducts}
                   </div>
                 </button>
               </div>

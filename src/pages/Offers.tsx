@@ -1,8 +1,7 @@
-import { Loader2 } from "lucide-react";
-
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductCard from "../components/ProductCard.tsx";
+import ProductCardSkeleton from "../components/ProductCardSkeleton";
 import SEOHybrid from "../components/SEOHybrid";
 import { useCart } from "../contexts/CartContext";
 import { useLanguage } from "../contexts/useLanguage";
@@ -30,26 +29,25 @@ const Offers = () => {
         <div className="container mx-auto px-4">
           <div className="mb-8 text-center">
             <h1 className="mb-4 text-4xl font-bold text-gray-900">{t.nav.offers}</h1>
-            <p className="mx-auto max-w-2xl text-lg text-gray-600">
-              Descubre nuestros productos en oferta con precios especiales
-            </p>
+            <p className="mx-auto max-w-2xl text-lg text-gray-600">{t.offers.subtitle}</p>
           </div>
 
           {loading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-              <span className="ml-2 text-lg">Cargando ofertas...</span>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <ProductCardSkeleton key={index} />
+              ))}
             </div>
           ) : error ? (
             <div className="rounded-lg border border-red-200 bg-red-50 p-4">
-              <h3 className="font-semibold text-red-800">Error al cargar ofertas</h3>
+              <h3 className="font-semibold text-red-800">{t.offers.loadingError}</h3>
               <p className="text-red-600">{error}</p>
             </div>
           ) : (
             <>
               <div className="mb-8 flex items-center justify-center">
                 <div className="rounded-full bg-red-100 px-6 py-2 font-semibold text-red-800">
-                  🔥 {offerProducts.length} productos en oferta
+                  🔥 {offerProducts.length} {t.offers.productsOnOffer}
                 </div>
               </div>
 
@@ -59,7 +57,7 @@ const Offers = () => {
                     <div key={product.id} className="relative">
                       <div className="absolute top-2 right-2 z-10">
                         <span className="rounded-full bg-red-600 px-3 py-1 text-sm font-bold text-white">
-                          OFERTA
+                          {t.offers.offerBadge}
                         </span>
                       </div>
                       <ProductCard product={product} fromOffers={true} />
@@ -70,11 +68,9 @@ const Offers = () => {
                 <div className="py-16 text-center">
                   <div className="mb-4 text-6xl">🏷️</div>
                   <h2 className="mb-2 text-2xl font-bold text-gray-900">
-                    No hay ofertas disponibles
+                    {t.offers.noOffersAvailable}
                   </h2>
-                  <p className="text-gray-600">
-                    Vuelve pronto para descubrir nuestras promociones.
-                  </p>
+                  <p className="text-gray-600">{t.offers.checkBackSoon}</p>
                 </div>
               )}
             </>
